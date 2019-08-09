@@ -52,28 +52,28 @@ namespace AFRICAN_FOOD.ViewModels
 
         private async void OnLogin()
         {
-            IsBusy = true;
-            if (_connectionService.IsConnected)
-            {
-                var authenticationResponse = await _authenticationService.Authenticate(Email, Password);
+            //IsBusy = true;
+            //if (_connectionService.IsConnected)
+            //{
+            //    var authenticationResponse = await _authenticationService.Authenticate(Email, Password);
 
-                if (authenticationResponse.IsAuthenticated)
-                {
-                    // we store the Id to know if the user is already logged in to the application
-                    _settingsService.UserIdSetting = authenticationResponse.User.Id;
-                    _settingsService.UserNameSetting = authenticationResponse.User.FirstName;
+            //    if (authenticationResponse.IsAuthenticated)
+            //    {
+            // we store the Id to know if the user is already logged in to the application
+            _settingsService.UserIdSetting = "12";// authenticationResponse.User.Id;
+                    _settingsService.UserNameSetting = Email;// authenticationResponse.User.FirstName;
 
-                    IsBusy = false;
+            //        IsBusy = false;
                     await _navigationService.NavigateToAsync<MainViewModel>();
-                }
-            }
-            else
-            {
-                await _dialogService.ShowDialog(
-                    "This username/password combination isn't known",
-                    "Error logging you in",
-                    "OK");
-            }
+            //    }
+            //}
+            //else
+            //{
+            //    await _dialogService.ShowDialog(
+            //        "This username/password combination isn't known",
+            //        "Error logging you in",
+            //        "OK");
+            //}
         }
 
         private void OnRegister()

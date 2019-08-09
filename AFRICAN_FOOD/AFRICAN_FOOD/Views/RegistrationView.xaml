@@ -13,7 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="400"></RowDefinition>
+            <RowDefinition Height="500"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -22,17 +22,17 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="400" WidthRequest="300" Grid.Row="1" Grid.Column="1">
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="500" WidthRequest="300" Grid.Row="1" Grid.Column="1">
 
-            <Frame AbsoluteLayout.LayoutFlags="SizeProportional" HeightRequest="400" WidthRequest="300" AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" 
+            <Frame AbsoluteLayout.LayoutFlags="SizeProportional" HeightRequest="500" WidthRequest="300" AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" 
                        BackgroundColor="White" HasShadow="true"
                        CornerRadius="10" Margin="0, 25, 0, 25"
                        >
                 <StackLayout Margin="0, 30">
-                    <Label Text="Registration" Style="{StaticResource PageHeaderStyle}"></Label>
+                    <Label Text="Enregistrement" Style="{StaticResource PageHeaderStyle}"></Label>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Already a member? " Style="{StaticResource RegularStyle}"></Label>
-                        <Label Text="Sign in!" Style="{StaticResource LinkStyle}">
+                        <Label Text="Déjà membre? " Style="{StaticResource RegularStyle}"></Label>
+                        <Label Text="Se connecter!" Style="{StaticResource LinkStyle}">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer            
                                         Command="{Binding LoginCommand}"  
@@ -40,12 +40,14 @@
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
-                    <controls:RoundedEntry Placeholder="First Name" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
-                    <controls:RoundedEntry Placeholder="Last Name" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding LastName, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Nom" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Prenom" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding LastName, Mode=TwoWay}"/>
                     <controls:RoundedEntry Placeholder="Email" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Email, Mode=TwoWay}"/>
                     <controls:RoundedEntry Placeholder="Phone" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding UserPhone, Mode=TwoWay}"/>
-                    <controls:RoundedEntry IsPassword="True" Placeholder="Password" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
-                    <Button Style="{StaticResource RegularButton}" Text="Register" Command="{Binding RegisterCommand}"></Button>
+                    <controls:RoundedEntry Placeholder="Localisation de votre commerce " WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding CommerceName, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Nom de votre commerce" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding CommerceLocate, Mode=TwoWay}"/>
+                    <controls:RoundedEntry IsPassword="True" Placeholder="Mot de passe" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
+                    <Button Style="{StaticResource RegularButton}" Text="S'inscrire" Command="{Binding RegisterCommand}"></Button>
                 </StackLayout>
             </Frame>
             <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0" BackgroundColor="Transparent" BorderColor="Transparent"

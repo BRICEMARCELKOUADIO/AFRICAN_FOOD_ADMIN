@@ -52,7 +52,7 @@ namespace AFRICAN_FOOD.ViewModels
         private async void OnSubmitMessage()
         {
             await _contactDataService.AddContactInfo(new ContactInfo() { Message = Message, Email = Email });
-            await _dialogService.ShowDialog("Thank you for your comment", "Thank you", "OK");
+            await _dialogService.ShowDialog("Merci pour votre commentaire", "", "OK");
         }
 
         private void OnCallPhone()

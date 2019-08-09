@@ -26,7 +26,7 @@ namespace AFRICAN_FOOD.ViewModels
             LoadMenuItems();
         }
 
-        public string WelcomeText => "Hello " + _settingsService.UserNameSetting;
+        public string WelcomeText => "Bonjour " + _settingsService.UserNameSetting;
 
         public ICommand MenuItemTappedCommand => new Command(OnMenuItemTapped);
 
@@ -44,7 +44,7 @@ namespace AFRICAN_FOOD.ViewModels
         {
             var menuItem = ((menuItemTappedEventArgs as ItemTappedEventArgs)?.Item as MainMenuItem);
 
-            if (menuItem != null && menuItem.MenuText == "Log out")
+            if (menuItem != null && menuItem.MenuText == "Deconnexion")
             {
                 _settingsService.UserIdSetting = null;
                 _settingsService.UserNameSetting = null;
@@ -59,35 +59,35 @@ namespace AFRICAN_FOOD.ViewModels
         {
             MenuItems.Add(new MainMenuItem
             {
-                MenuText = "Home",
+                MenuText = "Accueil",
                 ViewModelToLoad = typeof(MainViewModel),
                 MenuItemType = MenuItemType.Home
             });
 
             MenuItems.Add(new MainMenuItem
             {
-                MenuText = "Pies",
+                MenuText = "Ajouter un produit",
                 ViewModelToLoad = typeof(PieCatalogViewModel),
-                MenuItemType = MenuItemType.Pies
+               MenuItemType = MenuItemType.Pies
             });
 
             MenuItems.Add(new MainMenuItem
             {
-                MenuText = "Cart",
+                MenuText = "Achat des Client",
                 ViewModelToLoad = typeof(ShoppingCartViewModel),
                 MenuItemType = MenuItemType.ShoppingCart
             });
 
-            MenuItems.Add(new MainMenuItem
-            {
-                MenuText = "Contact us",
-                ViewModelToLoad = typeof(ContactViewModel),
-                MenuItemType = MenuItemType.Contact
-            });
+            //MenuItems.Add(new MainMenuItem
+            //{
+            //    MenuText = "Contact us",
+            //    ViewModelToLoad = typeof(ContactViewModel),
+            //    MenuItemType = MenuItemType.Contact
+            //});
 
             MenuItems.Add(new MainMenuItem
             {
-                MenuText = "Log out",
+                MenuText = "Deconnexion",
                 ViewModelToLoad = typeof(LoginViewModel),
                 MenuItemType = MenuItemType.Logout
             });

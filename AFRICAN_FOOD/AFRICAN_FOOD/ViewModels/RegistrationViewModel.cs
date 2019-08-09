@@ -19,6 +19,8 @@ namespace AFRICAN_FOOD.ViewModels
         private string _password;
         private string _email;
         private string _userPhone;
+        private string _commerceName;
+        private string _commerceLocate;
 
         public RegistrationViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
@@ -45,6 +47,26 @@ namespace AFRICAN_FOOD.ViewModels
             set
             {
                 _lastName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string CommerceName
+        {
+            get => _commerceName;
+            set
+            {
+                _commerceName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string CommerceLocate
+        {
+            get => _commerceLocate;
+            set
+            {
+                _commerceLocate = value;
                 OnPropertyChanged();
             }
         }
@@ -84,19 +106,19 @@ namespace AFRICAN_FOOD.ViewModels
 
         private async void OnRegister()
         {
-            if (_connectionService.IsConnected)
-            {
+            //if (_connectionService.IsConnected)
+            //{
 
-                var userRegistered = await
-                    _authenticationService.Register(_firstName, _lastName, _email, true, _userPhone, _password); ;
+            //    var userRegistered = await
+            //        _authenticationService.Register(_firstName, _lastName, _email, true, _commerceName, _commerceLocate, _userPhone, _password); ;
 
-                if (userRegistered.IsAuthenticated)
-                {
-                    await _dialogService.ShowDialog("Registration successful", "Message", "OK");
-                    _settingsService.UserIdSetting = userRegistered.User.Id;
+            //    if (userRegistered.IsAuthenticated)
+            //    {
+            //        await _dialogService.ShowDialog("Registration successful", "Message", "OK");
+            _settingsService.UserIdSetting = FirstName; //userRegistered.User.Id;
                     await _navigationService.NavigateToAsync<LoginViewModel>();
-                }
-            }
+            //    }
+            //}
         }
 
         private void OnLogin()

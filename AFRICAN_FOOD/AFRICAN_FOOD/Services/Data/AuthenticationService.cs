@@ -21,7 +21,7 @@ namespace AFRICAN_FOOD.Services.Data
 
         }
 
-        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser, string userName, string password)
+        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser,string commerceName,string commerceLocate, string userName, string password)
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {

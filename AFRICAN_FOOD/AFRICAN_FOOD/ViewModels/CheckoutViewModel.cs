@@ -49,7 +49,7 @@ namespace AFRICAN_FOOD.ViewModels
         {
             await _orderDataService.PlaceOrder(Order);
             MessagingCenter.Send(this, "OrderPlaced");
-            await _dialogService.ShowDialog("Order placed successfully", "Success", "OK");
+            await _dialogService.ShowDialog("Commande passée avec succès", "Succès", "OK");
             await _navigationService.PopToRootAsync();
         }
     }

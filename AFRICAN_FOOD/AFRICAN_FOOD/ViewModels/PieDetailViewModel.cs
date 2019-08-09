@@ -41,7 +41,7 @@ namespace AFRICAN_FOOD.ViewModels
         private async void OnAddToCart()
         {
             MessagingCenter.Send(this, MessagingConstants.AddPieToBasket, SelectedPie);
-            await _dialogService.ShowDialog("Pie added to your cart", "Success", "OK");
+            await _dialogService.ShowDialog("Produit ajoutée à votre panier", "Success", "OK");
         }
 
         private void OnReadDescription()

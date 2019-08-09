@@ -8,7 +8,7 @@
              xmlns:templates="clr-namespace:AFRICAN_FOOD.Templates;assembly=AFRICAN_FOOD"
              xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             Title="Welcome" BackgroundImage="darktexture.jpg" 
+             Title="Bienvenu" BackgroundImage="darktexture.jpg" 
              x:Name="HomeViewPage"
              x:Class="AFRICAN_FOOD.Views.HomeView"
              >
@@ -31,8 +31,8 @@
                         </Grid.RowDefinitions>
                         <Image HeightRequest="200" Grid.Row="0" Source="header1.jpg" Aspect="AspectFill"></Image>
                         <StackLayout Grid.Row="1">
-                            <Label Text="Trouver les produits promotionnels" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
-                            <Label Text="Notre sélection hebdomadaire" Style="{StaticResource RegularStyle}" HorizontalOptions="CenterAndExpand"></Label>
+                            <Label Text="Mes produit publié" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
+                            <!--<Label Text="Notre sélection hebdomadaire" Style="{StaticResource RegularStyle}" HorizontalOptions="CenterAndExpand"></Label>-->
                         </StackLayout>
                     </Grid>
                 </DataTemplate>
@@ -56,7 +56,7 @@
                                 <Label Grid.Row="1" Grid.Column="0" Text="{Binding Name}" Style="{StaticResource PieTileNameStyle}"></Label>
                                 <Label Grid.Row="1" Grid.Column="1"  Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="End"></Label>
                                 <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
-                                <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Add to cart" Style="{StaticResource RegularButton}" Command="{Binding Source={x:Reference HomeViewPage}, Path=BindingContext.AddToCartCommand}" CommandParameter="{Binding}"></Button>
+                                <!--<Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Add to cart" Style="{StaticResource RegularButton}" Command="{Binding Source={x:Reference HomeViewPage}, Path=BindingContext.AddToCartCommand}" CommandParameter="{Binding}"></Button>-->
                             </Grid>
                         </Frame>
                     </ViewCell>

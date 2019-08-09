@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="AFRICAN_FOOD.Views.ShoppingCartView"
              xmlns:behaviors="clr-namespace:AFRICAN_FOOD.Behaviors;assembly=AFRICAN_FOOD"
-             Title="Shopping Cart"
+             Title="Achat des clients"
              xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
              >
@@ -32,8 +32,8 @@
                             </Grid.RowDefinitions>
                             <Image HeightRequest="200" Grid.Row="0" Source="carousel3.jpg" Aspect="AspectFill"></Image>
                             <StackLayout Grid.Row="1">
-                                <Label Text="YOUR CART" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
-                                <Label Text="Check your order and head to checkout" Style="{StaticResource RegularStyle}" HorizontalOptions="CenterAndExpand"></Label>
+                                <Label Text="ACHAT DES CLIENTS" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
+                                <!--<Label Text="Check your order and head to checkout" Style="{StaticResource RegularStyle}" HorizontalOptions="CenterAndExpand"></Label>-->
                             </StackLayout>
                         </Grid>
                     </DataTemplate>
@@ -97,10 +97,10 @@
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label Text="Your order" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RegularStyle}"></Label>
-                                <Label Text="Purchase total" Grid.Row="1" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallBoldStyle}" ></Label>
+                                <Label Text="Votre commande" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RegularStyle}"></Label>
+                                <Label Text="Total d'achat" Grid.Row="1" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallBoldStyle}" ></Label>
                                 <Label Text="Taxes" Grid.Row="2" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallBoldStyle}"></Label>
-                                <Label Text="Shipping" Grid.Row="3" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallBoldStyle}"></Label>
+                                <Label Text="Livraison" Grid.Row="3" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallBoldStyle}"></Label>
                                 <Label Text="Total" Grid.Row="4" Grid.Column="0" Style="{StaticResource ShoppingCartLabelTotalStyle}"></Label>
                                 <Label Text="{Binding OrderTotal, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource ShoppingCartTileSmallStyle}" Grid.Row="1" Grid.Column="1" ></Label>
                                 <Label Text="{Binding Taxes, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource ShoppingCartTileSmallStyle}" Grid.Row="2" Grid.Column="1" ></Label>
@@ -117,7 +117,7 @@
             </ListView>
             <Grid Grid.Row="1">
                 <Image Source="patternwide.png" HeightRequest="50" Aspect="Fill"></Image>
-                <Label Text="© 2018 Bethany's Pie Shop" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
+                <Label Text="© 2019 African Food" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
             </Grid>
         </Grid>
     </ContentPage.Content>

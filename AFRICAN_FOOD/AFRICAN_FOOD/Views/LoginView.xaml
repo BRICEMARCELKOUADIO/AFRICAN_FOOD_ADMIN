@@ -31,10 +31,10 @@
                        CornerRadius="10" Margin="0, 25, 0, 25"
                        >
                 <StackLayout Margin="0, 30">
-                    <Label Text="Sign in" Style="{StaticResource PageHeaderStyle}"></Label>
+                    <Label Text="Se connecter" Style="{StaticResource PageHeaderStyle}"></Label>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Not a member? " Style="{StaticResource RegularStyle}"></Label>
-                        <Label Text="Register today!" Style="{StaticResource LinkStyle}">
+                        <Label Text="Pas un membre? " Style="{StaticResource RegularStyle}"></Label>
+                        <Label Text="Inscrivez-vous!" Style="{StaticResource LinkStyle}">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer            
                                         Command="{Binding RegisterCommand}"  
@@ -43,8 +43,8 @@
                         </Label>
                     </StackLayout>
                     <controls:RoundedEntry Placeholder="Email" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Email, Mode=TwoWay}"/>
-                    <controls:RoundedEntry IsPassword="True" Placeholder="Password" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
-                    <Button Style="{StaticResource RegularButton}" Text="Sign in" Command="{Binding LoginCommand}"></Button>
+                    <controls:RoundedEntry IsPassword="True" Placeholder="Mot de passe" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
+                    <Button Style="{StaticResource RegularButton}" Text="se connecter" Command="{Binding LoginCommand}"></Button>
                 </StackLayout>
             </Frame>
             <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0" WidthRequest="150" BackgroundColor="Transparent" BorderColor="Transparent"
