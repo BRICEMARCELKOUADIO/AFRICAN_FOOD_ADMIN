@@ -38,10 +38,12 @@
             <Frame BackgroundColor="White" HasShadow="true">
                 <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0">
-                        <controls:RoundedEntry Placeholder="Nom du Produit" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
-                        <controls:RoundedEntry Placeholder="Brève Description" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
-                        <controls:RoundedEntry Placeholder="Longue Description" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
-                        <controls:RoundedEntry Placeholder="Prix" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
+                        <controls:RoundedEntry Placeholder="Nom du Produit" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding ProductName, Mode=TwoWay}"/>
+                        <controls:RoundedEntry Placeholder="Brève Description" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding ShortDescription, Mode=TwoWay}"/>
+                        <controls:RoundedEntry Placeholder="Longue Description" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding LongDescription, Mode=TwoWay}"/>
+                        <controls:RoundedEntry Keyboard="Numeric" Placeholder="Prix Normal" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding PrixNormal, Mode=TwoWay}"/>
+                        <controls:RoundedEntry Keyboard="Numeric" Placeholder="Prix promotionnel " WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding PrixPromotionnel, Mode=TwoWay}"/>
+                        <controls:RoundedEntry Keyboard="Numeric" Placeholder="Quantité en Stock" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding QuantiteStock, Mode=TwoWay}"/>
                     </StackLayout>
                 </ScrollView>
             </Frame>
