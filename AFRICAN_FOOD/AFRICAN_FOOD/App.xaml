@@ -34,7 +34,7 @@
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="9" />
             </OnPlatform>
 
-            <Color x:Key="BethanyPurple">#a594c1</Color>
+            <Color x:Key="BethanyPurple">#ffcc80</Color>
             <Color x:Key="HeaderGrey">#aaaaaa</Color>
             <Color x:Key="PlainGrey">#aaaaaa</Color>
             <Color x:Key="LightGrey">#cccccc</Color>
