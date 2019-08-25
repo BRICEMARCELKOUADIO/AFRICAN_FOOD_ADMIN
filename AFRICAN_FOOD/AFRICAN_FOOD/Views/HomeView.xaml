@@ -20,7 +20,7 @@
     </ContentPage.Resources>
     <Grid>
         <ListView VerticalOptions="FillAndExpand" Header="{Binding .}" Footer="{Binding .}" ItemsSource="{Binding PiesOfTheWeek}" CachingStrategy="RecycleElement"
-            SeparatorVisibility="None" 
+            SeparatorVisibility="None"
                   
             HasUnevenRows="True">
             <ListView.Behaviors>
