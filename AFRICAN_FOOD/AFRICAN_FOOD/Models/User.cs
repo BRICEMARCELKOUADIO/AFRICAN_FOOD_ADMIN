@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,14 +7,32 @@ namespace AFRICAN_FOOD.Models
 {
     public class User
     {
-        public string Id { get; set; }
 
-        public string UserName { get; set; }
+            [JsonProperty("id")]
+            public string Id { get; set; }
 
-        public string FirstName { get; set; }
+            [JsonProperty("userPhone")]
+            public string UserPhone { get; set; }
 
-        public string LastName { get; set; }
+            [JsonProperty("firstName")]
+            public string FirstName { get; set; }
 
-        public string Email { get; set; }
+            [JsonProperty("lastName")]
+            public string LastName { get; set; }
+
+            [JsonProperty("email")]
+            public string Email { get; set; }
+
+            [JsonProperty("commerceName")]
+            public object CommerceName { get; set; }
+
+            [JsonProperty("commerceLocate")]
+            public string CommerceLocate { get; set; }
+
+            [JsonProperty("typeUser")]
+            public bool TypeUser { get; set; }
+
+            [JsonProperty("password")]
+            public object Password { get; set; }
     }
 }

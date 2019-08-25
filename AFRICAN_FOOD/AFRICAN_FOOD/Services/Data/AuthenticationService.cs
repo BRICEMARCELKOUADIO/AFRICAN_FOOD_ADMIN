@@ -5,6 +5,7 @@ using AFRICAN_FOOD.Contracts.Services.General;
 using AFRICAN_FOOD.Models;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,25 +22,28 @@ namespace AFRICAN_FOOD.Services.Data
 
         }
 
-        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser,string commerceName,string commerceLocate, string userName, string password)
+        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser,string commerceName,string commerceLocate, string usePhone, string password)
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {
                 Path = ApiConstants.RegisterEndpoint
             };
 
+
+            var url = $"{ApiConstants.BaseApiUrl}{ ApiConstants.RegisterEndpoint}?FirstName={firstName}&LastName={lastName}&Email={email}&TypeUser={typeuser}&CommerceName={commerceName}&CommerceLocate={commerceLocate}&UserPhone={usePhone}&Password={password}";
+
             AuthenticationRequest authenticationRequest = new AuthenticationRequest()
             {
                 Email = email,
                 FirstName = firstName,
                 LastName = lastName,
-                UserPhone = userName,
-                Password = password,
+                UserPhone = usePhone,
+                password = password,
                 TypeUser = typeuser
 
             };
 
-            return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(builder.ToString(), authenticationRequest);
+            return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(url, authenticationRequest);
         }
 
         public bool IsUserAuthenticated()
@@ -51,16 +55,23 @@ namespace AFRICAN_FOOD.Services.Data
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {
-                Path = ApiConstants.AuthenticateEndpoint
+                Path = ApiConstants.AuthenticateEndpoint //$"{ ApiConstants.AuthenticateEndpoint}?Email={Email}&password={password}"
+
             };
 
+            var url = $"{ApiConstants.BaseApiUrl}{ ApiConstants.AuthenticateEndpoint}?Email={Email}&password={password}";
+            //--
             AuthenticationRequest authenticationRequest = new AuthenticationRequest()
             {
                 Email = Email,
-                Password = password
+                password = password
             };
 
-            return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(builder.ToString(), authenticationRequest);
+            
+           // var content = new FormUrlEncodedContent(authenticationRequest);
+            //return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(builder.ToString(), authenticationRequest);
+            return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(url, authenticationRequest);
+            //return await _genericRepository.PostAsync<AuthenticationResponse>(builder.ToString());
         }
     }
 }

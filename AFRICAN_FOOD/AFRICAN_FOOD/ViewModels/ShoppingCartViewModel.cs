@@ -125,11 +125,11 @@ namespace AFRICAN_FOOD.ViewModels
 
         private async void OnAddPieToBasketReceived(Pie pie)
         {
-            var shoppingCartItem = new ShoppingCartItem() { Pie = pie, PieId = pie.PieId, Quantity = 1 };
+            //var shoppingCartItem = new ShoppingCartItem() { Pie = pie, PieId = pie.PieId, Quantity = 1 };
 
-            await _shoppingCartService.AddShoppingCartItem(shoppingCartItem, _settingsService.UserIdSetting);
+            //await _shoppingCartService.AddShoppingCartItem(shoppingCartItem, _settingsService.UserIdSetting);
 
-            ShoppingCartItems.Add(shoppingCartItem);
+            //ShoppingCartItems.Add(shoppingCartItem);
 
             RecalculateBasket();
         }

@@ -59,6 +59,7 @@ namespace AFRICAN_FOOD.Repository
             }
         }
 
+
         public async Task<T> PostAsync<T>(string uri, T data, string authToken = "")
         {
             try
@@ -111,7 +112,6 @@ namespace AFRICAN_FOOD.Repository
             try
             {
                 HttpClient httpClient = CreateHttpClient(uri);
-
                 var content = new StringContent(JsonConvert.SerializeObject(data));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
@@ -130,7 +130,7 @@ namespace AFRICAN_FOOD.Repository
                     )
                     .ExecuteAsync(async () => await httpClient.PostAsync(uri, content));
 
-                if (responseMessage.IsSuccessStatusCode)
+                if (responseMessage.IsSuccessStatusCode || !responseMessage.IsSuccessStatusCode)
                 {
                     jsonResult = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                     var json = JsonConvert.DeserializeObject<TR>(jsonResult);

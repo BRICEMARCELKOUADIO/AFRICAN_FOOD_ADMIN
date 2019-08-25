@@ -47,12 +47,12 @@ namespace AFRICAN_FOOD.Services.Data
 
         public async Task<IEnumerable<Pie>> GetPiesOfTheWeekAsync()
         {
-            List<Pie> piesFromCache = await GetFromCache<List<Pie>>(CacheNameConstants.PiesOfTheWeek);
+            //List<Pie> piesFromCache = await GetFromCache<List<Pie>>(CacheNameConstants.PiesOfTheWeek);
 
-            if (piesFromCache != null)//loaded from cache
-            {
-                return piesFromCache;
-            }
+            //if (piesFromCache != null)//loaded from cache
+            //{
+            //    return piesFromCache;
+            //}
 
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {
@@ -61,9 +61,39 @@ namespace AFRICAN_FOOD.Services.Data
 
             var pies = await _genericRepository.GetAsync<List<Pie>>(builder.ToString());
 
-            await Cache.InsertObject(CacheNameConstants.PiesOfTheWeek, pies, DateTimeOffset.Now.AddSeconds(20));
+           // await Cache.InsertObject(CacheNameConstants.PiesOfTheWeek, pies, DateTimeOffset.Now.AddSeconds(20));
 
             return pies;
         }
+
+        public async Task<Pie> AddPiesAsync(string name, string shortDescription,  decimal price, decimal prixPromotionnel, string imageToBase64, /*byte[] image,*/ bool isPieOfTheWeek, bool inStock, string userAdminId)
+        {
+            UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
+            {
+                Path = ApiConstants.PiesOfTheWeekEndpoint
+            };
+            var pies = new Pie();
+            var url = $"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}?Name={name}&ShortDescription={shortDescription}&Price={price}&PrixPromotionnel={prixPromotionnel}&IsPieOfTheWeek={isPieOfTheWeek}&inStock={inStock}&UserAdminId={userAdminId}&Image={imageToBase64}";
+
+            var objectToSend = new Pie
+            {
+                Name = name,
+                Price = price,
+                ShortDescription = shortDescription,
+                Image = imageToBase64,
+                IsPieOfTheWeek = isPieOfTheWeek,
+                InStock = inStock,
+                UserAdminId = userAdminId,
+                PrixPromotionnel = prixPromotionnel
+            };
+
+            //var url = $"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}?Name={name}&ShortDescription={shortDescription}&Price={price}&PrixPromotionnel={prixPromotionnel}&IsPieOfTheWeek={isPieOfTheWeek}&inStock={inStock}&UserAdminId={userAdminId}";
+            var result = await _genericRepository.PostAsync<Pie,Pie>($"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}", objectToSend);
+            //PostAsync<T, TR>(string uri, T data, string authToken = "")
+
+            return result;
+        }
+
+
     }
 }

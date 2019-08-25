@@ -6,7 +6,7 @@ namespace AFRICAN_FOOD.Models
 {
     public class AuthenticationRequest
     {
-        public string Password { get; set; }
+        public string password { get; set; }
 
         public string UserPhone { get; set; }
 

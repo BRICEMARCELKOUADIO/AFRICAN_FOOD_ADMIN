@@ -8,6 +8,7 @@ using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -18,25 +19,33 @@ namespace AFRICAN_FOOD.ViewModels
     public class PieCatalogViewModel : ViewModelBase
     {
         private readonly ICatalogDataService _catalogDataService;
+        private readonly ISettingsService _settingsService;
 
         private bool _photoOk = true;
         private bool _infoUser1 = false;
+        public string _productName = string.Empty;
+        public string _shortDescription = string.Empty;
+        public string _longDescription = string.Empty;
+        public string _prixNormal = string.Empty;
+        public string _prixPromotionnel = string.Empty;
+        public string _quantiteStock = string.Empty;
         private ImageSource _imgSrce;
 
         private ObservableCollection<Pie> _pies;
 
         public PieCatalogViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
-            ICatalogDataService catalogDataService)
+            ICatalogDataService catalogDataService, ISettingsService settingsService)
             : base(connectionService, navigationService, dialogService)
         {
             _catalogDataService = catalogDataService;
+            _settingsService = settingsService;
         }
 
         public ICommand PieTappedCommand => new Command<Pie>(OnPieTapped);
         public ICommand OnTakePicture => new Command(OnTakePictureCommand);
         public ICommand OnNextStep => new Command(OnNextStepCommand);
-        public ICommand OnValider => new Command(OnValiderCommand);
+        public ICommand OnValidate => new Command(OnValiderCommand);
 
         //public ObservableCollection<Pie> Pies
         //{
@@ -54,6 +63,57 @@ namespace AFRICAN_FOOD.ViewModels
             set
             {
                 _imgSrce = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ShortDescription
+        {
+            get { return _shortDescription; }
+            set {
+                _shortDescription = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string LongDescription
+        {
+            get{ return _longDescription; }
+            set
+            {
+                _longDescription = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PrixNormal
+        {
+            get { return _prixNormal; }
+            set
+            {
+                _prixNormal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ProductName
+        {
+            get { return _productName; }
+            set {
+                _productName = value;
+                OnPropertyChanged();
+
+            }
+
+        }
+
+        public string QuantiteStock
+        {
+            get { return _quantiteStock; }
+            set
+            {
+                _quantiteStock = value;
                 OnPropertyChanged();
             }
         }
@@ -77,6 +137,19 @@ namespace AFRICAN_FOOD.ViewModels
                 OnPropertyChanged();
             }
         }
+
+
+        public string PrixPromotionnel
+        {
+            get { return _prixPromotionnel; }
+            set
+            {
+                _prixPromotionnel = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
         private string _srcFile;
         public string srcFile
@@ -125,7 +198,7 @@ namespace AFRICAN_FOOD.ViewModels
             //GoInfoUser = true;
         }
 
-        private async void OnNextStepCommand()
+        private void OnNextStepCommand()
         {
             if (PhotoOk)
             {
@@ -137,8 +210,35 @@ namespace AFRICAN_FOOD.ViewModels
 
         public async void OnValiderCommand()
         {
-            await _dialogService.ShowDialog("Produit Ajouter", "", "OK");
-            await _navigationService.NavigateToAsync<MainViewModel>();
+
+            var byteImage = await converterImgByte(srcFile);
+            var noPrix = decimal.Parse(_prixNormal);
+            var prPrix = decimal.Parse(_prixPromotionnel);
+            var userid = _settingsService.UserIdSetting;
+
+
+            var imageToBase64 = System.Convert.ToBase64String(byteImage, Base64FormattingOptions.None);
+
+            var response = await _catalogDataService.AddPiesAsync(_productName, _shortDescription, noPrix, prPrix, imageToBase64, true, true, userid);
+
+            if (response != null)
+            {
+                await _dialogService.ShowDialog("Produit Ajouter", "", "OK");
+                await _navigationService.PopToRootAsync();
+            }
+            else
+            {
+                await _dialogService.ShowDialog("Verifier toute les informations entrées", "Erreur", "OK");
+                return;
+            }
+            
+        }
+
+        private async Task<byte[]> converterImgByte(string img)
+        {
+            var webClient = new WebClient();
+            byte[] imageBytes = await webClient.DownloadDataTaskAsync(new Uri(img));
+            return imageBytes;
         }
 
         private void OnPieTapped(Pie selectedPie)

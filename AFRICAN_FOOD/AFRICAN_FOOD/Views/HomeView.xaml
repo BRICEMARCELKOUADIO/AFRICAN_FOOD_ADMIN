@@ -10,8 +10,14 @@
              utility:ViewModelLocator.AutoWireViewModel="True"
              Title="Bienvenu" BackgroundImage="darktexture.jpg" 
              x:Name="HomeViewPage"
+             xmlns:connvertor="clr-namespace:AFRICAN_FOOD.Converters;assembly=AFRICAN_FOOD"
              x:Class="AFRICAN_FOOD.Views.HomeView"
              >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <connvertor:ByteToImageFieldConverter x:Key="convertor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <ListView VerticalOptions="FillAndExpand" Header="{Binding .}" Footer="{Binding .}" ItemsSource="{Binding PiesOfTheWeek}" CachingStrategy="RecycleElement"
             SeparatorVisibility="None" 
@@ -52,7 +58,7 @@
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Row="0" Grid.ColumnSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}" HeightRequest="100" WidthRequest="100"></Image>
+                                <Image Grid.Row="0" Grid.ColumnSpan="2" Aspect="AspectFill" Source="{Binding Image,Converter={StaticResource convertor}}" HeightRequest="100" WidthRequest="100"></Image>
                                 <Label Grid.Row="1" Grid.Column="0" Text="{Binding Name}" Style="{StaticResource PieTileNameStyle}"></Label>
                                 <Label Grid.Row="1" Grid.Column="1"  Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="End"></Label>
                                 <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>

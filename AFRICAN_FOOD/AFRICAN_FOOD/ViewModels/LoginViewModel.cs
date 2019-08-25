@@ -52,28 +52,44 @@ namespace AFRICAN_FOOD.ViewModels
 
         private async void OnLogin()
         {
-            //IsBusy = true;
-            //if (_connectionService.IsConnected)
-            //{
-            //    var authenticationResponse = await _authenticationService.Authenticate(Email, Password);
+            IsBusy = true;
+            if (_connectionService.IsConnected)
+            {
+                var authenticationResponse = await _authenticationService.Authenticate(Email, Password);
 
-            //    if (authenticationResponse.IsAuthenticated)
-            //    {
-            // we store the Id to know if the user is already logged in to the application
-            _settingsService.UserIdSetting = "12";// authenticationResponse.User.Id;
-                    _settingsService.UserNameSetting = Email;// authenticationResponse.User.FirstName;
+                if (authenticationResponse.IsAuthenticated)
+                {
+                    if (authenticationResponse.User.TypeUser == false)
+                    {
+                        await _dialogService.ShowDialog(
+                            "Vous n'êtes pas autorisé a vous connecter a cette Application",
+                            "Erreur lors de la connexion",
+                            "OK");
+                        return;
+                    }
 
-            //        IsBusy = false;
+                    // we store the Id to know if the user is already logged in to the application
+                    _settingsService.UserIdSetting =  authenticationResponse.User.Id;
+                    _settingsService.UserNameSetting = authenticationResponse.User.FirstName;
+
+                    IsBusy = false;
                     await _navigationService.NavigateToAsync<MainViewModel>();
-            //    }
-            //}
-            //else
-            //{
-            //    await _dialogService.ShowDialog(
-            //        "This username/password combination isn't known",
-            //        "Error logging you in",
-            //        "OK");
-            //}
+                }
+                else
+                {
+                    await _dialogService.ShowDialog(
+                        "Cette combinaison nom d'utilisateur / mot de passe n'est pas connue",
+                        "Erreur lors de la connexion",
+                        "OK");
+                }
+            }
+            else
+            {
+                await _dialogService.ShowDialog(
+                    "Cette combinaison nom d'utilisateur / mot de passe n'est pas connue",
+                    "Erreur lors de la connexion",
+                    "OK");
+            }
         }
 
         private void OnRegister()

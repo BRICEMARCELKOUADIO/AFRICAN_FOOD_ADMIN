@@ -46,7 +46,7 @@ namespace AFRICAN_FOOD.ViewModels
 
         private void OnReadDescription()
         {
-            DependencyService.Get<ITextToSpeech>().ReadText(SelectedPie.LongDescription);
+            DependencyService.Get<ITextToSpeech>().ReadText(SelectedPie.ShortDescription);
         }
     }
 }

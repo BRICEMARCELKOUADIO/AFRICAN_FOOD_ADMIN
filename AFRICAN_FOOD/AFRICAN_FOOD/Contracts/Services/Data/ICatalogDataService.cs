@@ -10,5 +10,11 @@ namespace AFRICAN_FOOD.Contracts.Services.Data
     {
         Task<IEnumerable<Pie>> GetAllPiesAsync();
         Task<IEnumerable<Pie>> GetPiesOfTheWeekAsync();
+        //Task<Pie> AddPiesAsync(
+        //    string name, string shortDescription, decimal price,decimal prixPromotionnel, 
+        //    byte[] image,  bool isPieOfTheWeek, bool inStock, string userAdminId);
+        Task<Pie> AddPiesAsync(
+            string name, string shortDescription, decimal price, decimal prixPromotionnel,
+            string imageToBase64, bool isPieOfTheWeek, bool inStock, string userAdminId);
     }
 }
