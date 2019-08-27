@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace AFRICAN_FOOD.Droid
 {
-    [Activity(Label = "AfricanFood Admin",
+    [Activity(Label = "African Food Administration",
         Icon = "@drawable/lunch",
         Theme = "@style/SplashTheme",
         MainLauncher = true,

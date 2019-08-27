@@ -21,7 +21,7 @@
             <Grid BackgroundColor="White" RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
@@ -33,16 +33,20 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="50"></ColumnDefinition>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding SelectedPie.Name}" Margin="3" Style="{StaticResource PieTileNameStyle}"></Label>
-                    <Label Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding SelectedPie.Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="End"></Label>
-                    <Label Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="2" Text="{Binding SelectedPie.ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding SelectedPie.Name}" FontAttributes="Bold" Margin="3" Style="{StaticResource PieTileNameStyle}"></Label>
+                    <Label Grid.Row="0" Grid.Column="1" Margin="3,3,40,3" Text="{Binding SelectedPie.Price, Converter={StaticResource LocalCurrencyConverter}}" TextColor="Black" TextDecorations="Strikethrough" HorizontalTextAlignment="End"></Label>
+                    <Label Grid.Row="0" Grid.Column="1" Margin="3" Text="CFA" TextColor="Black" TextDecorations="Strikethrough" HorizontalTextAlignment="End"></Label>
+                    <Label Grid.Row="1" Grid.Column="1" Margin="3,3,40,3"  Text="{Binding SelectedPie.PrixPromotionnel, Converter={StaticResource LocalCurrencyConverter}}" TextColor="Green" HorizontalTextAlignment="End"></Label>
+                    <Label Grid.Row="1" Grid.Column="1" Margin="3"  Text="CFA" TextColor="Green" HorizontalTextAlignment="End"></Label>
+                    <!--<Label Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="2" Text="{Binding SelectedPie.ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>-->
                 </Grid>
-                <Label Margin="5" Style="{StaticResource PieLongDescriptionStyle}" Grid.Row="2" Text="{Binding SelectedPie.LongDescription}"></Label>
+                <Label Margin="5" Style="{StaticResource PieLongDescriptionStyle}" Grid.Row="2" Text="{Binding SelectedPie.ShortDescription}"></Label>
                 <!--<Button Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,10,0" 
                         Text="Read description" Style="{StaticResource RegularButton}" Command="{Binding ReadDescriptionCommand}"></Button>-->
                 <Grid Grid.Row="4">

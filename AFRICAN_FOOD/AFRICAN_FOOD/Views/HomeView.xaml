@@ -8,14 +8,14 @@
              xmlns:templates="clr-namespace:AFRICAN_FOOD.Templates;assembly=AFRICAN_FOOD"
              xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             Title="Bienvenu" BackgroundImage="darktexture.jpg" 
+             Title="Bienvenue" BackgroundImage="darktexture.jpg" 
              x:Name="HomeViewPage"
-             xmlns:connvertor="clr-namespace:AFRICAN_FOOD.Converters;assembly=AFRICAN_FOOD"
+             xmlns:convertor="clr-namespace:AFRICAN_FOOD.Converters;assembly=AFRICAN_FOOD"
              x:Class="AFRICAN_FOOD.Views.HomeView"
              >
     <ContentPage.Resources>
         <ResourceDictionary>
-            <connvertor:ByteToImageFieldConverter x:Key="convertor"/>
+            <convertor:ByteToImageFieldConverter x:Key="convertor"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -37,7 +37,7 @@
                         </Grid.RowDefinitions>
                         <Image HeightRequest="200" Grid.Row="0" Source="header1.jpg" Aspect="AspectFill"></Image>
                         <StackLayout Grid.Row="1">
-                            <Label Text="Mes produit publié" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
+                            <Label Text="Mes produits" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
                             <!--<Label Text="Notre sélection hebdomadaire" Style="{StaticResource RegularStyle}" HorizontalOptions="CenterAndExpand"></Label>-->
                         </StackLayout>
                     </Grid>
@@ -47,9 +47,16 @@
                 <DataTemplate>
                     <ViewCell>
                         <Frame Margin="10" Padding="10" HeightRequest="200" >
-                            <Grid Margin="1" BackgroundColor="White" RowSpacing="0" HeightRequest="200" >
+                            <Grid Margin="1" BackgroundColor="White" RowSpacing="0" HeightRequest="200">
+                                
+                                <!--<Grid.ColumnDefinitions>
+                                    <ColumnDefinition Grid.Row ="3" Width="10"></ColumnDefinition>
+                                    <ColumnDefinition  Grid.Row ="3" Width="10"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>-->
+                              
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="6*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
                                     <RowDefinition Height="1*"></RowDefinition>
                                     <RowDefinition Height="1*"></RowDefinition>
                                     <RowDefinition Height="2*"></RowDefinition>
@@ -59,9 +66,14 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Row="0" Grid.ColumnSpan="2" Aspect="AspectFill" Source="{Binding Image,Converter={StaticResource convertor}}" HeightRequest="100" WidthRequest="100"></Image>
-                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Name}" Style="{StaticResource PieTileNameStyle}"></Label>
-                                <Label Grid.Row="1" Grid.Column="1"  Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="End"></Label>
-                                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
+                                <Label Grid.Row="1" Text="{Binding Name}" Style="{StaticResource PieTileNameStyle}"></Label>
+                                <Label  Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
+                                <!--<Label Grid.Row="1" Grid.Column="1"  Text="Prix normal: " Style="{StaticResource PieTilePriceStyle}" TextColor="Black" Margin="0,0,80,0" HorizontalTextAlignment="End"></Label>-->
+                                <Label Grid.Row="1" Grid.Column="1"  Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" Margin="0,0,40,0" TextColor="Black" TextDecorations="Strikethrough"  HorizontalTextAlignment="End"></Label>
+                                <Label Grid.Row="1" Grid.Column="1"  Text="CFA" TextColor="Black"  HorizontalTextAlignment="End"></Label>
+                                <!--<Label Grid.Row="2" Grid.Column="1" Margin="0,0,80,0"  Text="Prix promotionnel : " TextColor="Black" HorizontalTextAlignment="End"></Label>-->
+                                <Label Grid.Row="2" Grid.Column="1"  Text="{Binding PrixPromotionnel, Converter={StaticResource LocalCurrencyConverter}}" Margin="0,0,40,0" TextColor="Green" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>
+                                <Label Grid.Row="2" Grid.Column="1"  Text="CFA" TextColor="Green" FontAttributes="Bold"  HorizontalTextAlignment="End"></Label>
                                 <!--<Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Add to cart" Style="{StaticResource RegularButton}" Command="{Binding Source={x:Reference HomeViewPage}, Path=BindingContext.AddToCartCommand}" CommandParameter="{Binding}"></Button>-->
                             </Grid>
                         </Frame>

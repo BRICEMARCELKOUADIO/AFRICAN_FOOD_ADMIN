@@ -73,7 +73,7 @@ namespace AFRICAN_FOOD.ViewModels
 
             MenuItems.Add(new MainMenuItem
             {
-                MenuText = "Achat des Client",
+                MenuText = "Commandes en cours",
                 ViewModelToLoad = typeof(ShoppingCartViewModel),
                 MenuItemType = MenuItemType.ShoppingCart
             });
@@ -87,7 +87,7 @@ namespace AFRICAN_FOOD.ViewModels
 
             MenuItems.Add(new MainMenuItem
             {
-                MenuText = "Deconnexion",
+                MenuText = "Déconnexion",
                 ViewModelToLoad = typeof(LoginViewModel),
                 MenuItemType = MenuItemType.Logout
             });

@@ -223,12 +223,13 @@ namespace AFRICAN_FOOD.ViewModels
 
             if (response != null)
             {
-                await _dialogService.ShowDialog("Produit Ajouter", "", "OK");
+                await _dialogService.ShowDialog("Votre produit a été ajouté avec succès!", "", "OK");
+                MessagingCenter.Send<PieCatalogViewModel>(this, "Pies_added");
                 await _navigationService.PopToRootAsync();
             }
             else
             {
-                await _dialogService.ShowDialog("Verifier toute les informations entrées", "Erreur", "OK");
+                await _dialogService.ShowDialog("Veuillez vérifier les informations entrées", "Erreur", "OK");
                 return;
             }
             

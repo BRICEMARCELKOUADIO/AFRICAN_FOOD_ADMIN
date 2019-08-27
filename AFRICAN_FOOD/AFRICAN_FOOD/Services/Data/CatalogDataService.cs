@@ -94,6 +94,30 @@ namespace AFRICAN_FOOD.Services.Data
             return result;
         }
 
+        public async Task<List<Pie>> GetPieByAdminId(string id)
+        {
+            //List<Pie> piesFromCache =
+            //    await GetFromCache<List<Pie>>(CacheNameConstants.AllPies);
+
+            //if (piesFromCache != null)//loaded from cache
+            //{
+            //    return piesFromCache;
+            //}
+            //else
+            //{
+            UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
+            {
+                Path = ApiConstants.GetPieByAdminId + id
+            };
+
+                var pies = await _genericRepository.GetAsync<List<Pie>>(builder.ToString());
+
+               // await Cache.InsertObject(CacheNameConstants.AllPies, pies, DateTimeOffset.Now.AddSeconds(20));
+
+                return pies;
+            //}
+        }
+
 
     }
 }

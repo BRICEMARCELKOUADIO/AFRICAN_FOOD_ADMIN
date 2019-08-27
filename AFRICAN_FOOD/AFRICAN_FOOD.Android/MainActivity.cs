@@ -10,7 +10,7 @@ using Acr.UserDialogs;
 
 namespace AFRICAN_FOOD.Droid
 {
-    [Activity(Label = "AfricanFood Admin",
+    [Activity(Label = "African Food Administration",
         Icon = "@drawable/lunch", Theme = "@style/MainTheme", MainLauncher = false, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {

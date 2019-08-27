@@ -8,7 +8,7 @@
              xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
              BackgroundImage="darktexture.jpg" 
-             Title="Ajouter Un Produit"
+             Title="Ajouter un produit"
              x:Name="PieCatalogViewPage"
              xmlns:controls="clr-namespace:AFRICAN_FOOD.Controls;assembly=AFRICAN_FOOD"
              x:Class="AFRICAN_FOOD.Views.PieCatalogView"
@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
 
 
-            <Button Text="Prendre La Photo" Style="{StaticResource RegularButton}" Grid.ColumnSpan="2" WidthRequest="500" Command="{Binding OnTakePicture}" Grid.Row="0" HorizontalOptions="Center"></Button>
+            <Button Text="Prendre la photo" Style="{StaticResource RegularButton}" Grid.ColumnSpan="2" WidthRequest="500" Command="{Binding OnTakePicture}" Grid.Row="0" HorizontalOptions="Center"></Button>
 
 
             <Image Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding ImgSrce}"/>
@@ -38,11 +38,11 @@
             <Frame BackgroundColor="White" HasShadow="true">
                 <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0">
-                        <controls:RoundedEntry Placeholder="Nom du Produit" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding ProductName, Mode=TwoWay}"/>
-                        <controls:RoundedEntry Placeholder="Brève Description" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding ShortDescription, Mode=TwoWay}"/>
-                        <controls:RoundedEntry Keyboard="Numeric" Placeholder="Prix Normal" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding PrixNormal, Mode=TwoWay}"/>
-                        <controls:RoundedEntry Keyboard="Numeric" Placeholder="Prix promotionnel " WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding PrixPromotionnel, Mode=TwoWay}"/>
-                        <controls:RoundedEntry Keyboard="Numeric" Placeholder="Quantité en Stock" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding QuantiteStock, Mode=TwoWay}"/>
+                        <Editor Placeholder="Nom du produit" HeightRequest="50" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding ProductName, Mode=TwoWay}"/>
+                        <Editor Placeholder="Description" HeightRequest="150" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Keyboard="Chat" Text="{Binding ShortDescription, Mode=TwoWay}"/>
+                        <Editor Keyboard="Numeric" HeightRequest="50" Placeholder="Prix normal" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding PrixNormal, Mode=TwoWay}"/>
+                        <Editor Keyboard="Numeric" HeightRequest="50" Placeholder="Prix promotionnel" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding PrixPromotionnel, Mode=TwoWay}"/>
+                        <Editor Keyboard="Numeric" HeightRequest="50" Placeholder="Quantité" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding QuantiteStock, Mode=TwoWay}"/>
                     </StackLayout>
                 </ScrollView>
             </Frame>

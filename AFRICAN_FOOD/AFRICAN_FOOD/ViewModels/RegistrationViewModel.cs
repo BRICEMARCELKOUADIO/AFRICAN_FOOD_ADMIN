@@ -125,6 +125,11 @@ namespace AFRICAN_FOOD.ViewModels
                 }
 
             }
+
+            else
+            {
+                await _dialogService.ShowDialog("Vérifier votre connexion internet", "", "OK");
+            }
         }
 
         private void OnLogin()

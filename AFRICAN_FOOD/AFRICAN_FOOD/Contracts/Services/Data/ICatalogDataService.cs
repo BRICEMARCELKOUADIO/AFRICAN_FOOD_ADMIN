@@ -16,5 +16,7 @@ namespace AFRICAN_FOOD.Contracts.Services.Data
         Task<Pie> AddPiesAsync(
             string name, string shortDescription, decimal price, decimal prixPromotionnel,
             string imageToBase64, bool isPieOfTheWeek, bool inStock, string userAdminId);
+
+        Task<List<Pie>> GetPieByAdminId(string id);
     }
 }
