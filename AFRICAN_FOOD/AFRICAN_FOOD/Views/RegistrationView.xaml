@@ -8,8 +8,16 @@
              x:Class="AFRICAN_FOOD.Views.RegistrationView"
               xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:convertor="clr-namespace:AFRICAN_FOOD.Converters;assembly=AFRICAN_FOOD"
              BackgroundColor="{StaticResource BethanyPurple}"
              >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convertor:InverseBooleanConverter x:Key="boolConvertor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -28,6 +36,7 @@
                        BackgroundColor="White" HasShadow="true"
                        CornerRadius="10" Margin="0, 25, 0, 25"
                        >
+                <ScrollView>
                 <StackLayout Margin="0, 30">
                     <Label Text="Enregistrement" Style="{StaticResource PageHeaderStyle}"></Label>
                     <StackLayout Orientation="Horizontal">
@@ -42,13 +51,19 @@
                     </StackLayout>
                     <controls:RoundedEntry Placeholder="Nom" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
                     <controls:RoundedEntry Placeholder="Prenom" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding LastName, Mode=TwoWay}"/>
-                    <controls:RoundedEntry Placeholder="Email" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Email, Mode=TwoWay}"/>
-                    <controls:RoundedEntry Placeholder="Phone" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding UserPhone, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Username" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Email, Mode=TwoWay}"/>
+                    <controls:RoundedEntry IsPassword="True" Placeholder="Mot de passe" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Numero de telephone" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding UserPhone, Mode=TwoWay}"/>
                     <controls:RoundedEntry Placeholder="Localisation de votre commerce " WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding CommerceName, Mode=TwoWay}"/>
                     <controls:RoundedEntry Placeholder="Nom de votre commerce" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding CommerceLocate, Mode=TwoWay}"/>
-                    <controls:RoundedEntry IsPassword="True" Placeholder="Mot de passe" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
-                    <Button Style="{StaticResource RegularButton}" Text="S'inscrire" Command="{Binding RegisterCommand}"></Button>
-                </StackLayout>
+                     <controls:RoundedEntry IsEnabled="False" Placeholder="Position géographique" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Position, Mode=TwoWay}"/>
+
+                        <Button Style="{StaticResource RegularButton}" Margin="0,0,0,20" Text="Localisez-moi" IsVisible="{Binding OnlocalisationLoad, Converter={StaticResource boolConvertor}}" IsEnabled="{Binding OnlocalisationLoad,Converter={StaticResource boolConvertor}}" Command="{Binding LocaliserCommand}"></Button>
+                        <ActivityIndicator IsVisible="{Binding OnlocalisationLoad}" IsEnabled="{Binding OnlocalisationLoad}" Color="#ffcc80" IsRunning="{Binding OnlocalisationLoad}" HeightRequest="40" WidthRequest="40"/>
+                        <Button Style="{StaticResource RegularButton}" IsEnabled="{Binding CanGo}" IsVisible="{Binding IsBusy, Converter={StaticResource boolConvertor}}" Text="S'inscrire" Command="{Binding RegisterCommand}"></Button>
+                        <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="#ffcc80" HeightRequest="40" WidthRequest="40"/>
+                    </StackLayout>
+                </ScrollView>
             </Frame>
             <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0" BackgroundColor="Transparent" BorderColor="Transparent"
                     AbsoluteLayout.LayoutBounds="0.5,0,50,50" VerticalOptions="Fill" HorizontalOptions="Fill">

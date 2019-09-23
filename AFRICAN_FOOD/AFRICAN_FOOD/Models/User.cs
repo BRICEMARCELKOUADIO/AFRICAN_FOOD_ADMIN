@@ -32,7 +32,13 @@ namespace AFRICAN_FOOD.Models
             [JsonProperty("typeUser")]
             public bool TypeUser { get; set; }
 
-            [JsonProperty("password")]
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+
+        public string PositionGeo { get; set; }
+
+
+        [JsonProperty("password")]
             public object Password { get; set; }
     }
 }

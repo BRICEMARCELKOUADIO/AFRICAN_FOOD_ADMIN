@@ -44,6 +44,8 @@ namespace AFRICAN_FOOD.ViewModels
 
         public ICommand PieTappedCommand => new Command<Pie>(OnPieTapped);
         public ICommand AddToCartCommand => new Command<Pie>(OnAddToCart);
+        public ICommand EditCommand => new Command<Pie>(OnEdit);
+        public ICommand DeletCommand => new Command<Pie>(OnDelet);
 
         public ObservableCollection<Pie> PiesOfTheWeek
         {
@@ -76,12 +78,30 @@ namespace AFRICAN_FOOD.ViewModels
             IsBusy = false;
         }
 
-        public Image byteArrayToImage(byte[] byteArray)
+        private async void OnDelet(Pie selectedPie)
         {
-            Image image = new Image();
-            Stream stream = new MemoryStream(byteArray);
-            image.Source = ImageSource.FromStream(()=> stream);
-            return image;
+            IsBusy = true;
+            var response = await _catalogDataService.DeletPie(selectedPie.PieId);
+            if (response != null)
+                await _dialogService.ShowDialog("Votre produit a été supprimer", "", "Ok");
+            else
+                await _dialogService.ShowDialog("Error lors de suppression de votre produit", "", "Ok");
+
+            PieRefresh();
+
+            IsBusy = false;
+        }
+
+        private async void PieRefresh()
+        {
+            PiesOfTheWeek.Clear();
+            string id = _settingsService.UserIdSetting;
+            PiesOfTheWeek = (await _catalogDataService.GetPieByAdminId(id)).ToObservableCollection();
+        }
+
+        private async void OnEdit(Pie selectedPie)
+        {
+            await _navigationService.NavigateToAsync<PieCatalogViewModel>(selectedPie);
         }
     }
 }

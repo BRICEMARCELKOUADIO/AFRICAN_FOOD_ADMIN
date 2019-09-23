@@ -8,7 +8,7 @@ namespace AFRICAN_FOOD.Contracts.Services.Data
 {
     public interface IShoppingCartDataService
     {
-        Task<ShoppingCart> GetShoppingCart(string userId);
+        Task<List<ShoppingCart>> GetShoppingCart(string userId);
         Task<ShoppingCartItem> AddShoppingCartItem(ShoppingCartItem shoppingCartItem, string userId);
     }
 }

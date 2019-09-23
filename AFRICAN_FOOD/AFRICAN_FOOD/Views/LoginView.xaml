@@ -5,13 +5,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="AFRICAN_FOOD.Views.LoginView"
-             
+              xmlns:convertor="clr-namespace:AFRICAN_FOOD.Converters;assembly=AFRICAN_FOOD"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              xmlns:controls="clr-namespace:AFRICAN_FOOD.Controls;assembly=AFRICAN_FOOD"
              xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
              BackgroundColor="{StaticResource BethanyPurple}"
              >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convertor:InverseBooleanConverter x:Key="boolConvertor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -42,9 +49,10 @@
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
-                    <controls:RoundedEntry Placeholder="Email" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Email, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Username" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Email, Mode=TwoWay}"/>
                     <controls:RoundedEntry IsPassword="True" Placeholder="Mot de passe" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
-                    <Button Style="{StaticResource RegularButton}" Text="se connecter" Command="{Binding LoginCommand}"></Button>
+                    <Button Style="{StaticResource RegularButton}" IsEnabled="{Binding CanGo}" IsVisible="{Binding IsBusy, Converter={StaticResource boolConvertor}}" Text="se connecter" Command="{Binding LoginCommand}"></Button>
+                    <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="#ffcc80" HeightRequest="40" WidthRequest="40"/>
                 </StackLayout>
             </Frame>
             <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0" WidthRequest="150" BackgroundColor="Transparent" BorderColor="Transparent"

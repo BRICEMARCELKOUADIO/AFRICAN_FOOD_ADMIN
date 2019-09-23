@@ -8,10 +8,12 @@ using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AFRICAN_FOOD.ViewModels
@@ -23,15 +25,17 @@ namespace AFRICAN_FOOD.ViewModels
 
         private bool _photoOk = true;
         private bool _infoUser1 = false;
-        public string _productName = string.Empty;
-        public string _shortDescription = string.Empty;
-        public string _longDescription = string.Empty;
-        public string _prixNormal = string.Empty;
-        public string _prixPromotionnel = string.Empty;
-        public string _quantiteStock = string.Empty;
+        private string _productName = string.Empty;
+        private string _shortDescription = string.Empty;
+        private string _longDescription = string.Empty;
+        private string _prixNormal = string.Empty;
+        private string _prixPromotionnel = string.Empty;
+        private string _quantiteStock = string.Empty;
+        private bool _isModify = false;
+
         private ImageSource _imgSrce;
 
-        private ObservableCollection<Pie> _pies;
+        private Pie _pie = new Pie();
 
         public PieCatalogViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
@@ -65,6 +69,27 @@ namespace AFRICAN_FOOD.ViewModels
                 _imgSrce = value;
                 OnPropertyChanged();
             }
+        }
+
+        public bool IsModify
+        {
+            get => _isModify;
+            set
+            {
+                _isModify = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+        public Pie Pie
+        {
+            get => _pie;
+            set
+            {
+                _pie = value;
+                OnPropertyChanged();
+            } 
         }
 
         public string ShortDescription
@@ -210,20 +235,41 @@ namespace AFRICAN_FOOD.ViewModels
 
         public async void OnValiderCommand()
         {
+            if (decimal.Parse(_prixNormal) <= decimal.Parse(_prixPromotionnel)) 
+            {
+                await _dialogService.ShowDialog("Le prix promotionnel doit être inferieur au prix normal!", "", "OK");
+                return;
+            }
+            //var file = FileSystem.AppDataDirectory
+            byte[] byteImage = string.IsNullOrEmpty(srcFile) ? default : await converterImgByte(srcFile);
+            string imageToBase64 = string.Empty;
+            if (srcFile != null)
+            {
+                //byteImage = await converterImgByte(srcFile);
+                imageToBase64 = System.Convert.ToBase64String(byteImage, Base64FormattingOptions.None);
+            }
+            else
+            {
+                imageToBase64 = Pie.Image;
 
-            var byteImage = await converterImgByte(srcFile);
+            }
             var noPrix = decimal.Parse(_prixNormal);
             var prPrix = decimal.Parse(_prixPromotionnel);
             var userid = _settingsService.UserIdSetting;
-
-
-            var imageToBase64 = System.Convert.ToBase64String(byteImage, Base64FormattingOptions.None);
-
-            var response = await _catalogDataService.AddPiesAsync(_productName, _shortDescription, noPrix, prPrix, imageToBase64, true, true, userid);
+            var userphone = _settingsService.UserPhone;
+            var latitude = _settingsService.Latitude;
+            var longitude = _settingsService.Longitude;
+            var position = _settingsService.Position;
+            int piId = Pie == null ? 0 : Pie.PieId;
+            var response = await _catalogDataService.AddPiesAsync(piId, _productName, _shortDescription, noPrix, prPrix, imageToBase64, true, true, userid, userphone,longitude,latitude,position,IsModify);
 
             if (response != null)
             {
-                await _dialogService.ShowDialog("Votre produit a été ajouté avec succès!", "", "OK");
+                if(IsModify)
+                    await _dialogService.ShowDialog("Votre produit a été modifié avec succès!", "", "OK");
+                else
+                    await _dialogService.ShowDialog("Votre produit a été ajouté avec succès!", "", "OK");
+
                 MessagingCenter.Send<PieCatalogViewModel>(this, "Pies_added");
                 await _navigationService.PopToRootAsync();
             }
@@ -235,6 +281,7 @@ namespace AFRICAN_FOOD.ViewModels
             
         }
 
+
         private async Task<byte[]> converterImgByte(string img)
         {
             var webClient = new WebClient();
@@ -242,18 +289,38 @@ namespace AFRICAN_FOOD.ViewModels
             return imageBytes;
         }
 
+        private ImageSource converteByteToImage(object value)
+        {
+            ImageSource retSource = null;
+            if (value != null)
+            {
+                string source = value as string;
+                byte[] imageAsBytes = System.Convert.FromBase64String(source);
+                retSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
+            }
+            return retSource;
+        }
+
         private void OnPieTapped(Pie selectedPie)
         {
             _navigationService.NavigateToAsync<PieDetailViewModel>(selectedPie);
         }
 
-        //public override async Task InitializeAsync(object data)
-        //{
-        //    IsBusy = true;
+        public override async Task InitializeAsync(object data)
+        {
 
-        //    Pies = (await _catalogDataService.GetAllPiesAsync()).ToObservableCollection();
+            Pie = (Pie)data;
+            if (Pie != null)
+            {
+                ImgSrce = converteByteToImage(Pie.Image);
+                PrixNormal = (Pie.Price).ToString();
+                PrixPromotionnel = (Pie.PrixPromotionnel).ToString();
+                ProductName = Pie.Name;
+                ShortDescription = Pie.ShortDescription;
+                PhotoOk = true;
+                IsModify = true;
+            }
 
-        //    IsBusy = false;
-        //}
+        }
     }
 }

@@ -66,14 +66,14 @@ namespace AFRICAN_FOOD.Services.Data
             return pies;
         }
 
-        public async Task<Pie> AddPiesAsync(string name, string shortDescription,  decimal price, decimal prixPromotionnel, string imageToBase64, /*byte[] image,*/ bool isPieOfTheWeek, bool inStock, string userAdminId)
+        public async Task<Pie> AddPiesAsync(int pieId,string name, string shortDescription,  decimal price, decimal prixPromotionnel, string imageToBase64, /*byte[] image,*/ bool isPieOfTheWeek, bool inStock, string userAdminId, string userPhone, double longitude, double latitude, string positionGeo, bool isModify)
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {
                 Path = ApiConstants.PiesOfTheWeekEndpoint
             };
             var pies = new Pie();
-            var url = $"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}?Name={name}&ShortDescription={shortDescription}&Price={price}&PrixPromotionnel={prixPromotionnel}&IsPieOfTheWeek={isPieOfTheWeek}&inStock={inStock}&UserAdminId={userAdminId}&Image={imageToBase64}";
+            var url = $"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}?Name={name}&ShortDescription={shortDescription}&Price={price}&PrixPromotionnel={prixPromotionnel}&IsPieOfTheWeek={isPieOfTheWeek}&inStock={inStock}&UserAdminId={userAdminId}&Image={imageToBase64}&UserPhone={userPhone}&Longitude={longitude}&Latitude={latitude}&PositionGeo={positionGeo}";
 
             var objectToSend = new Pie
             {
@@ -84,11 +84,26 @@ namespace AFRICAN_FOOD.Services.Data
                 IsPieOfTheWeek = isPieOfTheWeek,
                 InStock = inStock,
                 UserAdminId = userAdminId,
-                PrixPromotionnel = prixPromotionnel
+                PrixPromotionnel = prixPromotionnel,
+                Longitude = longitude,
+                Latitude = latitude,
+                PositionGeo = positionGeo,
+                UserPhone = userPhone
+                
             };
-
+            if (isModify)
+            {
+                objectToSend.PieId = pieId;
+            }
+            Pie result = new Pie();
             //var url = $"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}?Name={name}&ShortDescription={shortDescription}&Price={price}&PrixPromotionnel={prixPromotionnel}&IsPieOfTheWeek={isPieOfTheWeek}&inStock={inStock}&UserAdminId={userAdminId}";
-            var result = await _genericRepository.PostAsync<Pie,Pie>($"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}", objectToSend);
+            if (!isModify)
+            {
+                result = await _genericRepository.PostAsync<Pie, Pie>($"{ApiConstants.BaseApiUrl}{ApiConstants.AddPies}", objectToSend);
+            }
+            else
+                result = await _genericRepository.PostAsync<Pie, Pie>($"{ApiConstants.BaseApiUrl}{ApiConstants.ModifyAddPies}", objectToSend);
+
             //PostAsync<T, TR>(string uri, T data, string authToken = "")
 
             return result;
@@ -116,6 +131,13 @@ namespace AFRICAN_FOOD.Services.Data
 
                 return pies;
             //}
+        }
+
+        public async Task<Pie> DeletPie(int pieId)
+        {
+            var url = $"{ApiConstants.BaseApiUrl}{ApiConstants.DeletPie}?pieId={pieId}";
+            var Pie = await _genericRepository.GetAsync<Pie>(url);
+            return Pie;
         }
 
 

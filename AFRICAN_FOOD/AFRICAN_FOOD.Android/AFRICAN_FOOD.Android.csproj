@@ -119,9 +119,6 @@
     <AndroidResource Include="Resources\drawable\darktexture.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\header1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_cart.png" />
   </ItemGroup>
   <ItemGroup>

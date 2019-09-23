@@ -6,8 +6,8 @@ namespace AFRICAN_FOOD.Models
 {
     public class Pie
     {
-        
-        
+
+        public int PieId { get; set; }
         public string Name { get; set; }
 
       
@@ -34,7 +34,13 @@ namespace AFRICAN_FOOD.Models
         public bool IsPieOfTheWeek { get; set; }
 
         public bool InStock { get; set; }
-        
+
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+
+        public string PositionGeo { get; set; }
+
         public string UserAdminId { get; set; }
+        public string UserPhone{ get; set; }
     }
 }

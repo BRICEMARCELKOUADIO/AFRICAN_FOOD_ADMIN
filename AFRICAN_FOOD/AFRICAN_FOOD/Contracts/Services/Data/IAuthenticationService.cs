@@ -8,7 +8,7 @@ namespace AFRICAN_FOOD.Contracts.Services.Data
 {
     public interface IAuthenticationService
     {
-        Task<AuthenticationResponse> Register(string firstName, string lastName, string email,bool typeuser,string _commerceName, string _commerceLocate, string userPhone, string password);
+        Task<AuthenticationResponse> Register(string firstName, string lastName, string email,bool typeuser,string _commerceName, string _commerceLocate, string userPhone, string password, double longitude, double latitude, string position);
 
         Task<AuthenticationResponse> Authenticate(string Email, string password);
 

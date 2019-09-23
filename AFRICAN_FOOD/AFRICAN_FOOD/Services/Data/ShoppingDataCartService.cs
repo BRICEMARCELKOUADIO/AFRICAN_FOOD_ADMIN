@@ -19,14 +19,14 @@ namespace AFRICAN_FOOD.Services.Data
             _genericRepository = genericRepository;
         }
 
-        public async Task<ShoppingCart> GetShoppingCart(string userId)
+        public async Task<List<ShoppingCart>> GetShoppingCart(string userId)
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {
-                Path = $"{ApiConstants.ShoppingCartEndpoint}/{userId}"
+                Path = $"{ApiConstants.GetCommandClient}/{userId}"
             };
 
-            var shoppingCart = await _genericRepository.GetAsync<ShoppingCart>(builder.ToString());
+            var shoppingCart = await _genericRepository.GetAsync<List<ShoppingCart>>(builder.ToString());
 
             return shoppingCart;
         }

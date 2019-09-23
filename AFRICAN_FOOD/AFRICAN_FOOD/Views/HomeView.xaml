@@ -15,7 +15,7 @@
              >
     <ContentPage.Resources>
         <ResourceDictionary>
-            <convertor:ByteToImageFieldConverter x:Key="convertor"/>
+            <convertor:ByteToImageFieldConverter x:Key="convertorImage"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -35,7 +35,7 @@
                             <RowDefinition Height="8*"></RowDefinition>
                             <RowDefinition Height="2*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image HeightRequest="200" Grid.Row="0" Source="header1.jpg" Aspect="AspectFill"></Image>
+                        <Image HeightRequest="200" Grid.Row="0" Source="carousel3.jpg" Aspect="AspectFill"></Image>
                         <StackLayout Grid.Row="1">
                             <Label Text="Mes produits" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
                             <!--<Label Text="Notre sélection hebdomadaire" Style="{StaticResource RegularStyle}" HorizontalOptions="CenterAndExpand"></Label>-->
@@ -46,8 +46,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Frame Margin="10" Padding="10" HeightRequest="200" >
-                            <Grid Margin="1" BackgroundColor="White" RowSpacing="0" HeightRequest="200">
+                        <Frame Margin="10" Padding="10" HeightRequest="350" >
+                            <Grid Margin="1" BackgroundColor="White" RowSpacing="0" HeightRequest="250">
                                 
                                 <!--<Grid.ColumnDefinitions>
                                     <ColumnDefinition Grid.Row ="3" Width="10"></ColumnDefinition>
@@ -60,21 +60,33 @@
                                     <RowDefinition Height="1*"></RowDefinition>
                                     <RowDefinition Height="1*"></RowDefinition>
                                     <RowDefinition Height="2*"></RowDefinition>
+                                    <RowDefinition Height="2*"></RowDefinition>
+                                    <RowDefinition Height="2*"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Row="0" Grid.ColumnSpan="2" Aspect="AspectFill" Source="{Binding Image,Converter={StaticResource convertor}}" HeightRequest="100" WidthRequest="100"></Image>
-                                <Label Grid.Row="1" Text="{Binding Name}" Style="{StaticResource PieTileNameStyle}"></Label>
-                                <Label  Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
-                                <!--<Label Grid.Row="1" Grid.Column="1"  Text="Prix normal: " Style="{StaticResource PieTilePriceStyle}" TextColor="Black" Margin="0,0,80,0" HorizontalTextAlignment="End"></Label>-->
-                                <Label Grid.Row="1" Grid.Column="1"  Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" Margin="0,0,40,0" TextColor="Black" TextDecorations="Strikethrough"  HorizontalTextAlignment="End"></Label>
-                                <Label Grid.Row="1" Grid.Column="1"  Text="CFA" TextColor="Black"  HorizontalTextAlignment="End"></Label>
-                                <!--<Label Grid.Row="2" Grid.Column="1" Margin="0,0,80,0"  Text="Prix promotionnel : " TextColor="Black" HorizontalTextAlignment="End"></Label>-->
-                                <Label Grid.Row="2" Grid.Column="1"  Text="{Binding PrixPromotionnel, Converter={StaticResource LocalCurrencyConverter}}" Margin="0,0,40,0" TextColor="Green" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>
-                                <Label Grid.Row="2" Grid.Column="1"  Text="CFA" TextColor="Green" FontAttributes="Bold"  HorizontalTextAlignment="End"></Label>
-                                <!--<Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Add to cart" Style="{StaticResource RegularButton}" Command="{Binding Source={x:Reference HomeViewPage}, Path=BindingContext.AddToCartCommand}" CommandParameter="{Binding}"></Button>-->
+
+                                <Image Grid.Row="0" Grid.ColumnSpan="2" Aspect="Fill" Source="{Binding Image,Converter={StaticResource convertorImage}}" HeightRequest="200" WidthRequest="100"></Image>
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" FontSize="18" Style="{StaticResource PieTileNameStyle}"></Label>
+                                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ShortDescription}" TextColor="Black" FontSize="14" Style="{StaticResource PieTileDescriptionStyle}"></Label>
+                                <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                                    <Label Grid.Row="3" Grid.Column="0" TextColor="Black" FontSize="14" TextDecorations="Strikethrough" Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" HorizontalTextAlignment="Start"></Label>
+                                    <Label Grid.Row="3" Grid.Column="0" FontSize="14" Text="CFA" TextColor="Black" TextDecorations="Strikethrough" HorizontalTextAlignment="Start"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                                    <Label Grid.Row="4" Grid.Column="0" TextColor="Green" FontAttributes="Bold" FontSize="14" Text="{Binding PrixPromotionnel, Converter={StaticResource LocalCurrencyConverter}}" HorizontalTextAlignment="Start"></Label>
+                                    <Label Grid.Row="4" Grid.Column="0" TextColor="Green" FontAttributes="Bold" FontSize="14" Text="CFA"  HorizontalTextAlignment="Start"></Label>
+                                </StackLayout>
+                                <!--<StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                                    <Label Grid.Row="5" Grid.Column="0" TextColor="Black"  FontAttributes="Bold" FontSize="14" Text="Statut: " Style="{StaticResource PieTilePriceStyle}" ></Label>
+                                    <Label Grid.Row="5" Grid.Column="0" IsVisible="{Binding InStock}" FontSize="14" IsEnabled="{Binding InStock}" TextColor="Black" FontAttributes="Bold"  Text="En Stock"  Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="Start"></Label>
+                                    <Label Grid.Row="5" Grid.Column="0" TextColor="Black" FontSize="14" FontAttributes="Bold" IsVisible="{Binding InStock, Converter={StaticResource boolConvertor}}" IsEnabled="{Binding InStock,Converter={StaticResource boolConvertor}}"  Text="Stock Epuisé" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="Start"></Label>
+
+                                </StackLayout>-->
+                                <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Text="Modifier" Margin="0,0,0,5" IsEnabled="{Binding InStock}" Style="{StaticResource RegularButton}" Command="{Binding Source={x:Reference HomeViewPage}, Path=BindingContext.EditCommand}" CommandParameter="{Binding}"></Button>
+                                <Button Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Text="Supprimer" IsEnabled="{Binding InStock}" Style="{StaticResource RegularButton}" Command="{Binding Source={x:Reference HomeViewPage}, Path=BindingContext.DeletCommand}" CommandParameter="{Binding}"></Button>
                             </Grid>
                         </Frame>
                     </ViewCell>

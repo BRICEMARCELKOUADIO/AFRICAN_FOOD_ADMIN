@@ -16,6 +16,7 @@ namespace AFRICAN_FOOD.ViewModels
 
         private string _email;
         private string _password;
+        private bool _canGo = false;
 
         public LoginViewModel(IConnectionService connectionService, ISettingsService settingsService,
             INavigationService navigationService,
@@ -27,7 +28,7 @@ namespace AFRICAN_FOOD.ViewModels
             _settingsService = settingsService;
         }
 
-        public ICommand LoginCommand => new Command(OnLogin);
+        public ICommand LoginCommand => new Command(OnLogin, () => CanGo);
         public ICommand RegisterCommand => new Command(OnRegister);
 
         public string Email
@@ -36,6 +37,20 @@ namespace AFRICAN_FOOD.ViewModels
             set
             {
                 _email = value;
+                OnPropertyChanged();
+                CanExecute();
+            }
+        }
+
+        public bool CanGo
+        {
+            get
+            {
+                return _canGo;
+            }
+            set
+            {
+                _canGo = value;
                 OnPropertyChanged();
             }
         }
@@ -47,6 +62,7 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _password = value;
                 OnPropertyChanged();
+                CanExecute();
             }
         }
 
@@ -55,6 +71,7 @@ namespace AFRICAN_FOOD.ViewModels
             IsBusy = true;
             if (_connectionService.IsConnected)
             {
+                
                 var authenticationResponse = await _authenticationService.Authenticate(Email, Password);
 
                 if (authenticationResponse.IsAuthenticated)
@@ -65,12 +82,17 @@ namespace AFRICAN_FOOD.ViewModels
                             "Vous n'êtes pas autorisé a vous connecter a cette Application",
                             "Erreur lors de la connexion",
                             "OK");
+                        IsBusy = false;
                         return;
                     }
 
                     // we store the Id to know if the user is already logged in to the application
                     _settingsService.UserIdSetting =  authenticationResponse.User.Id;
+                    _settingsService.UserPhone = authenticationResponse.User.UserPhone;
                     _settingsService.UserNameSetting = authenticationResponse.User.FirstName;
+                    _settingsService.Latitude = authenticationResponse.User.Latitude;
+                    _settingsService.Longitude = authenticationResponse.User.Longitude;
+                    _settingsService.Position = authenticationResponse.User.PositionGeo;
 
                     IsBusy = false;
                     await _navigationService.NavigateToAsync<MainViewModel>();
@@ -90,6 +112,12 @@ namespace AFRICAN_FOOD.ViewModels
                     "Erreur lors de la connexion",
                     "OK");
             }
+            IsBusy = false;
+        }
+
+        private void CanExecute()
+        {
+            CanGo = !(string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password));
         }
 
         private void OnRegister()

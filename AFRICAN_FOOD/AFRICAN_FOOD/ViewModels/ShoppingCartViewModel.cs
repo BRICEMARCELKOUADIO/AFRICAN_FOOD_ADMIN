@@ -17,6 +17,7 @@ namespace AFRICAN_FOOD.ViewModels
     public class ShoppingCartViewModel : ViewModelBase
     {
         private ObservableCollection<ShoppingCartItem> _shoppingCartItems;
+        private ObservableCollection<ShoppingCartItem> _shoppingItems;
         private readonly ISettingsService _settingsService;
         private readonly IShoppingCartDataService _shoppingCartService;
 
@@ -43,7 +44,17 @@ namespace AFRICAN_FOOD.ViewModels
             set
             {
                 _shoppingCartItems = value;
-                RecalculateBasket();
+                //RecalculateBasket();
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<ShoppingCartItem> ShoppingItems
+        {
+            get => _shoppingItems;
+            set
+            {
+                _shoppingItems = value;
+                //RecalculateBasket();
                 OnPropertyChanged();
             }
         }
@@ -80,10 +91,10 @@ namespace AFRICAN_FOOD.ViewModels
 
         public void InitializeMessenger()
         {
-            MessagingCenter.Subscribe<PieDetailViewModel, Pie>(this, MessagingConstants.AddPieToBasket,
-                (pieDetailViewModel, pie) => OnAddPieToBasketReceived(pie));
-            MessagingCenter.Subscribe<HomeViewModel, Pie>(this, MessagingConstants.AddPieToBasket,
-                (homeViewModel, pie) => OnAddPieToBasketReceived(pie));
+            //MessagingCenter.Subscribe<PieDetailViewModel, Pie>(this, MessagingConstants.AddPieToBasket,
+            //    (pieDetailViewModel, pie) => OnAddPieToBasketReceived(pie));
+            //MessagingCenter.Subscribe<HomeViewModel, Pie>(this, MessagingConstants.AddPieToBasket,
+            //    (homeViewModel, pie) => OnAddPieToBasketReceived(pie));
             MessagingCenter.Subscribe<CheckoutViewModel>(this, "OrderPlaced", model => OnOrderPlaced());
         }
 
@@ -97,13 +108,13 @@ namespace AFRICAN_FOOD.ViewModels
             ShoppingCartItems.Clear();
         }
 
-        private void RecalculateBasket()
-        {
-            _orderTotal = CalculateOrderTotal();
-            Taxes = _orderTotal * (decimal)0.2;
-            Shipping = _orderTotal * (decimal)0.1;
-            GrandTotal = _orderTotal + _shipping + _taxes;
-        }
+        //private void RecalculateBasket()
+        //{
+        //    _orderTotal = CalculateOrderTotal();
+        //    Taxes = _orderTotal * (decimal)0.2;
+        //    Shipping = _orderTotal * (decimal)0.1;
+        //    GrandTotal = _orderTotal + _shipping + _taxes;
+        //}
 
         private decimal CalculateOrderTotal()
         {
@@ -119,19 +130,27 @@ namespace AFRICAN_FOOD.ViewModels
 
         public override async Task InitializeAsync(object data)
         {
-            var shoppingCart = await _shoppingCartService.GetShoppingCart(_settingsService.UserIdSetting);
-            ShoppingCartItems = shoppingCart.ShoppingCartItems.ToObservableCollection();
+            ShoppingCartItems.Clear();
+            var ListshoppingCart = await _shoppingCartService.GetShoppingCart(_settingsService.UserIdSetting);
+            
+            ListshoppingCart.ForEach(e =>
+           {
+               foreach (var item in e.ShoppingCartItems)
+               {
+                   ShoppingCartItems.Add(item);
+               }
+           });
         }
 
-        private async void OnAddPieToBasketReceived(Pie pie)
-        {
-            //var shoppingCartItem = new ShoppingCartItem() { Pie = pie, PieId = pie.PieId, Quantity = 1 };
+        //private async void OnAddPieToBasketReceived(Pie pie)
+        //{
+        //    //var shoppingCartItem = new ShoppingCartItem() { Pie = pie, PieId = pie.PieId, Quantity = 1 };
 
-            //await _shoppingCartService.AddShoppingCartItem(shoppingCartItem, _settingsService.UserIdSetting);
+        //    //await _shoppingCartService.AddShoppingCartItem(shoppingCartItem, _settingsService.UserIdSetting);
 
-            //ShoppingCartItems.Add(shoppingCartItem);
+        //    //ShoppingCartItems.Add(shoppingCartItem);
 
-            RecalculateBasket();
-        }
+        //    RecalculateBasket();
+        //}
     }
 }

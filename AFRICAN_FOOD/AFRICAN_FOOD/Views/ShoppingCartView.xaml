@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="AFRICAN_FOOD.Views.ShoppingCartView"
              xmlns:behaviors="clr-namespace:AFRICAN_FOOD.Behaviors;assembly=AFRICAN_FOOD"
-             Title="Commandes en cours"
+             Title="Commandes en cours" BackgroundImage="darktexture.jpg" 
              xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
              >
@@ -55,8 +55,12 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Row="0" Grid.RowSpan="2" HeightRequest="80" WidthRequest="100" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding Pie.ImageUrl}"></Image>
                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding Pie.Name}" Margin="3" Style="{StaticResource PieTileNameStyle}"></Label>
-                                <Label Grid.Row="0" Grid.Column="2"  Margin="3" Text="{Binding Pie.Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="End"></Label>
-                                <Label Grid.Column="1" Grid.Row="1" Margin="3" Grid.ColumnSpan="2" Text="{Binding Pie.ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
+                                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" >
+                                    <Label Margin="3" Text="Numero du client : " Style="{StaticResource PieTileDescriptionStyle}"></Label>
+                                    <Label   Margin="3" Text="{Binding ClientNumber}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
+                                </StackLayout>
+                                <!--<Label Grid.Row="0" Grid.Column="2"  Margin="3" Text="{Binding Pie.Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="End"></Label>
+                                <Label Grid.Column="1" Grid.Row="1" Margin="3" Grid.ColumnSpan="2" Text="{Binding Pie.ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>-->
                                 <Grid Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" HeightRequest="30">
                                     <Grid.RowDefinitions>
                                         <RowDefinition></RowDefinition>
@@ -68,7 +72,7 @@
                                         <ColumnDefinition></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Label Text="Quantité" Grid.Row="0" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
-                                    <Label Text="Prix" Grid.Row="0" Grid.Column="1" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
+                                    <Label Text="Prix unitaire" Grid.Row="0" Grid.Column="1" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
                                     <Label Text="Total" Grid.Row="0" Grid.Column="2" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
                                     <Label Text="{Binding Quantity}" Grid.Row="1" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
                                     <Label Text="{Binding Pie.Price, Converter={StaticResource LocalCurrencyConverter}}" Grid.Row="1" Grid.Column="1" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
@@ -81,10 +85,10 @@
                 <ListView.FooterTemplate>
                     <DataTemplate>
                         <Grid RowSpacing="0" Margin="3, 0" >
-                            <Grid.RowDefinitions>
+                            <!--<Grid.RowDefinitions>
                                 <RowDefinition Height="6*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Grid BackgroundColor="White" IsVisible="{Binding ShoppingCartItems.Count, Converter={StaticResource LocalCountToVisibilityConverter}, ConverterParameter=True}">
+                           --><!--<Grid BackgroundColor="White" IsVisible="{Binding ShoppingCartItems.Count, Converter={StaticResource LocalCountToVisibilityConverter}, ConverterParameter=True}">--><!--
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="15"></RowDefinition>
                                     <RowDefinition Height="15"></RowDefinition>
@@ -106,11 +110,10 @@
                                 <Label Text="{Binding Taxes, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource ShoppingCartTileSmallStyle}" Grid.Row="2" Grid.Column="1" ></Label>
                                 <Label Text="{Binding Shipping, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource ShoppingCartTileSmallStyle}" Grid.Row="3" Grid.Column="1" ></Label>
                                 <Label Text="{Binding GrandTotal, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource ShoppingCartTotalStyle}" Grid.Row="4"  Grid.Column="1" ></Label>
-                                <Button Text="Confirmer" Style="{StaticResource RegularButton}" Command="{Binding CheckOutCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"></Button>
                             </Grid>
                             <Grid IsVisible="{Binding ShoppingCartItems.Count, Converter={StaticResource LocalCountToVisibilityConverter}, ConverterParameter=False}" VerticalOptions="CenterAndExpand">
                                 <Label Text="Vous n'avez aucune commande" Style="{StaticResource RegularStyle}" HorizontalOptions="CenterAndExpand"></Label>
-                            </Grid>
+                            </Grid>-->
                         </Grid>
                     </DataTemplate>
                 </ListView.FooterTemplate>
