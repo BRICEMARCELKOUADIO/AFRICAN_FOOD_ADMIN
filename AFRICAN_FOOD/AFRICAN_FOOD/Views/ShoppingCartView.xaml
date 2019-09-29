@@ -11,11 +11,16 @@
              utility:ViewModelLocator.AutoWireViewModel="True"
              >
     <ContentPage.Content>
+
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
+            <StackLayout IsVisible="{Binding IsCommandLoaded}" IsEnabled="{Binding IsCommandLoaded}" HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator IsRunning="{Binding IsCommandLoaded}" Color="#ffcc80" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="40" WidthRequest="40"/>
+            </StackLayout>
             <ListView VerticalOptions="FillAndExpand" Header="{Binding .}" Footer="{Binding .}" ItemsSource="{Binding ShoppingCartItems}" CachingStrategy="RecycleElement" 
                 SeparatorVisibility="None" HasUnevenRows="True">
                 <ListView.Behaviors>
@@ -74,9 +79,9 @@
                                     <Label Text="Quantité" Grid.Row="0" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
                                     <Label Text="Prix unitaire" Grid.Row="0" Grid.Column="1" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
                                     <Label Text="Total" Grid.Row="0" Grid.Column="2" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
-                                    <Label Text="{Binding Quantity}" Grid.Row="1" Grid.Column="0" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
-                                    <Label Text="{Binding Pie.Price, Converter={StaticResource LocalCurrencyConverter}}" Grid.Row="1" Grid.Column="1" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
-                                    <Label Text="{Binding Total, Converter={StaticResource LocalCurrencyConverter}}" Grid.Row="1" Grid.Column="2" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
+                                    <Label Text="{Binding Quantity}" FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
+                                    <Label Text="{Binding Pie.Price,  Converter={StaticResource LocalCurrencyConverter}}" FontAttributes="Bold" Grid.Row="1" Grid.Column="1" TextColor="Black" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
+                                    <Label Text="{Binding Total, Converter={StaticResource LocalCurrencyConverter}}" FontAttributes="Bold" Grid.Row="1" Grid.Column="2" TextColor="Black" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
                                 </Grid>
                             </Grid>
                         </ViewCell>

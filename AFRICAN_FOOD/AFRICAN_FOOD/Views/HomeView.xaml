@@ -19,6 +19,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
+        <StackLayout IsVisible="{Binding IsLoadProduct}" IsEnabled="{Binding IsLoadProduct}" HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator IsRunning="{Binding IsLoadProduct}" Color="#ffcc80" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="40" WidthRequest="40"/>
+        </StackLayout>
         <ListView VerticalOptions="FillAndExpand" Header="{Binding .}" Footer="{Binding .}" ItemsSource="{Binding PiesOfTheWeek}" CachingStrategy="RecycleElement"
             SeparatorVisibility="None"
                   

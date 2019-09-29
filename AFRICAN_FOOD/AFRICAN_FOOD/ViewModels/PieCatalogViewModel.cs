@@ -32,6 +32,7 @@ namespace AFRICAN_FOOD.ViewModels
         private string _prixPromotionnel = string.Empty;
         private string _quantiteStock = string.Empty;
         private bool _isModify = false;
+        private bool _canGo = false;
 
         private ImageSource _imgSrce;
 
@@ -49,7 +50,7 @@ namespace AFRICAN_FOOD.ViewModels
         public ICommand PieTappedCommand => new Command<Pie>(OnPieTapped);
         public ICommand OnTakePicture => new Command(OnTakePictureCommand);
         public ICommand OnNextStep => new Command(OnNextStepCommand);
-        public ICommand OnValidate => new Command(OnValiderCommand);
+        public ICommand OnValidate => new Command(OnValiderCommand, () => CanGo);
 
         //public ObservableCollection<Pie> Pies
         //{
@@ -98,6 +99,7 @@ namespace AFRICAN_FOOD.ViewModels
             set {
                 _shortDescription = value;
                 OnPropertyChanged();
+                CanExecute();
             }
         }
 
@@ -119,6 +121,7 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _prixNormal = value;
                 OnPropertyChanged();
+                CanExecute();
             }
         }
 
@@ -128,9 +131,23 @@ namespace AFRICAN_FOOD.ViewModels
             set {
                 _productName = value;
                 OnPropertyChanged();
+                CanExecute();
 
             }
 
+        }
+
+        public bool CanGo
+        {
+            get
+            {
+                return _canGo;
+            }
+            set
+            {
+                _canGo = value;
+                OnPropertyChanged();
+            }
         }
 
         public string QuantiteStock
@@ -140,6 +157,7 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _quantiteStock = value;
                 OnPropertyChanged();
+                CanExecute();
             }
         }
 
@@ -171,6 +189,7 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _prixPromotionnel = value;
                 OnPropertyChanged();
+                CanExecute();
             }
         }
 
@@ -235,9 +254,11 @@ namespace AFRICAN_FOOD.ViewModels
 
         public async void OnValiderCommand()
         {
+            IsBusy = true;
             if (decimal.Parse(_prixNormal) <= decimal.Parse(_prixPromotionnel)) 
             {
                 await _dialogService.ShowDialog("Le prix promotionnel doit être inferieur au prix normal!", "", "OK");
+                IsBusy = false;
                 return;
             }
             //var file = FileSystem.AppDataDirectory
@@ -261,7 +282,8 @@ namespace AFRICAN_FOOD.ViewModels
             var longitude = _settingsService.Longitude;
             var position = _settingsService.Position;
             int piId = Pie == null ? 0 : Pie.PieId;
-            var response = await _catalogDataService.AddPiesAsync(piId, _productName, _shortDescription, noPrix, prPrix, imageToBase64, true, true, userid, userphone,longitude,latitude,position,IsModify);
+            int quantite = int.Parse(QuantiteStock);
+            var response = await _catalogDataService.AddPiesAsync(piId, _productName, _shortDescription, noPrix, prPrix, imageToBase64, true, true, userid, userphone,longitude,latitude,position,IsModify, quantite);
 
             if (response != null)
             {
@@ -276,9 +298,16 @@ namespace AFRICAN_FOOD.ViewModels
             else
             {
                 await _dialogService.ShowDialog("Veuillez vérifier les informations entrées", "Erreur", "OK");
+                IsBusy = false;
                 return;
             }
+            IsBusy = false;
             
+        }
+
+        private void CanExecute()
+        {
+            CanGo = !(string.IsNullOrEmpty(PrixNormal) || string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(QuantiteStock) || string.IsNullOrEmpty(ShortDescription) || string.IsNullOrEmpty(PrixPromotionnel));
         }
 
 

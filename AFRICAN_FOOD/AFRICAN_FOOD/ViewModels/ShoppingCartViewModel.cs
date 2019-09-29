@@ -48,6 +48,18 @@ namespace AFRICAN_FOOD.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private bool _isCommandLoaded = false;
+        public bool IsCommandLoaded
+        {
+            get => _isCommandLoaded;
+            set
+            {
+                _isCommandLoaded = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<ShoppingCartItem> ShoppingItems
         {
             get => _shoppingItems;
@@ -130,6 +142,7 @@ namespace AFRICAN_FOOD.ViewModels
 
         public override async Task InitializeAsync(object data)
         {
+            IsCommandLoaded = true;
             ShoppingCartItems.Clear();
             var ListshoppingCart = await _shoppingCartService.GetShoppingCart(_settingsService.UserIdSetting);
             
@@ -140,6 +153,8 @@ namespace AFRICAN_FOOD.ViewModels
                    ShoppingCartItems.Add(item);
                }
            });
+            IsCommandLoaded = false;
+
         }
 
         //private async void OnAddPieToBasketReceived(Pie pie)

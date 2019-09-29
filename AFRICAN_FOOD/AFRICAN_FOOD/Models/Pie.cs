@@ -42,5 +42,6 @@ namespace AFRICAN_FOOD.Models
 
         public string UserAdminId { get; set; }
         public string UserPhone{ get; set; }
+        public int quantite { get; set; }
     }
 }

@@ -57,11 +57,23 @@ namespace AFRICAN_FOOD.ViewModels
             }
         }
 
+        private bool _isLoadProduct = false;
+        public bool IsLoadProduct
+        {
+            get => _isLoadProduct;
+            set
+            {
+                _isLoadProduct = value;
+                OnPropertyChanged();
+            }
+        }
+
         public override async Task InitializeAsync(object data)
         {
-
+            IsLoadProduct = true;
             string id = _settingsService.UserIdSetting;
             PiesOfTheWeek = (await _catalogDataService.GetPieByAdminId(id)).ToObservableCollection();
+            IsLoadProduct = false;
         }
 
         private void OnPieTapped(Pie selectedPie)
@@ -94,9 +106,11 @@ namespace AFRICAN_FOOD.ViewModels
 
         private async void PieRefresh()
         {
+            IsLoadProduct = true;
             PiesOfTheWeek.Clear();
             string id = _settingsService.UserIdSetting;
             PiesOfTheWeek = (await _catalogDataService.GetPieByAdminId(id)).ToObservableCollection();
+            IsLoadProduct = false;
         }
 
         private async void OnEdit(Pie selectedPie)
