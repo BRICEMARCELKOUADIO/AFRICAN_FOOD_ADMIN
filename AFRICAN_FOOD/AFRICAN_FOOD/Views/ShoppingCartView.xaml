@@ -87,7 +87,7 @@
                                     <Label Text="Prix unitaire" Grid.Row="0" Grid.Column="1" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
                                     <Label Text="Total" Grid.Row="0" Grid.Column="2" Style="{StaticResource ShoppingCartTileSmallHeaderStyle}"></Label>
                                     <Label Text="{Binding Quantity}" FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
-                                    <Label Text="{Binding Pie.Price,  Converter={StaticResource LocalCurrencyConverter}}" FontAttributes="Bold" Grid.Row="1" Grid.Column="1" TextColor="Black" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
+                                    <Label Text="{Binding Pie.PrixPromotionnel,  Converter={StaticResource LocalCurrencyConverter}}" FontAttributes="Bold" Grid.Row="1" Grid.Column="1" TextColor="Black" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
                                     <Label Text="{Binding Total, Converter={StaticResource LocalCurrencyConverter}}" FontAttributes="Bold" Grid.Row="1" Grid.Column="2" TextColor="Black" Style="{StaticResource ShoppingCartTileSmallStyle}"></Label>
                                 </Grid>
                             </Grid>

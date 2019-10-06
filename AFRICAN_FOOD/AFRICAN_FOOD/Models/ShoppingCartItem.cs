@@ -15,6 +15,6 @@ namespace AFRICAN_FOOD.Models
 
         public int Quantity { get; set; }
 
-        public decimal Total => Quantity * Pie.Price;
+        public decimal Total => Quantity * Pie.PrixPromotionnel;
     }
 }
