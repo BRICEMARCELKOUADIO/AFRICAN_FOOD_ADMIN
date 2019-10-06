@@ -30,8 +30,10 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-
-            <Button Text="Prendre la photo" Style="{StaticResource RegularButton}" Grid.ColumnSpan="2" WidthRequest="500" Command="{Binding OnTakePicture}" Grid.Row="0" HorizontalOptions="Center"></Button>
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Spacing="5" Orientation="Horizontal" HorizontalOptions="Center" >
+                <Button Text="Prendre la photo" Style="{StaticResource RegularButton}" Command="{Binding OnTakePicture}" ></Button>
+                <Button Text="Gallery" Style="{StaticResource RegularButton}" Command="{Binding OnGalleryPicture}"></Button>
+            </StackLayout>
 
 
             <Image Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding ImgSrce}"/>

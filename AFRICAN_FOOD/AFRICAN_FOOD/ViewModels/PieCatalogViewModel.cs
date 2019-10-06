@@ -49,6 +49,7 @@ namespace AFRICAN_FOOD.ViewModels
 
         public ICommand PieTappedCommand => new Command<Pie>(OnPieTapped);
         public ICommand OnTakePicture => new Command(OnTakePictureCommand);
+        public ICommand OnGalleryPicture => new Command(OnGalleryPictureCommand);
         public ICommand OnNextStep => new Command(OnNextStepCommand);
         public ICommand OnValidate => new Command(OnValiderCommand);
 
@@ -240,6 +241,21 @@ namespace AFRICAN_FOOD.ViewModels
             });
 
             //GoInfoUser = true;
+        }
+
+        private async void OnGalleryPictureCommand()
+        {
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await _dialogService.ShowDialog("No camera avaialble.", "", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file == null)
+                return;
+            srcFile = file.Path;
+            ImgSrce = ImageSource.FromStream(() => file.GetStream());
         }
 
         private void OnNextStepCommand()

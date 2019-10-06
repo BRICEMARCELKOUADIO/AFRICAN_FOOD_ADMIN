@@ -7,11 +7,17 @@
              x:Class="AFRICAN_FOOD.Views.ShoppingCartView"
              xmlns:behaviors="clr-namespace:AFRICAN_FOOD.Behaviors;assembly=AFRICAN_FOOD"
              Title="Commandes en cours" BackgroundImage="darktexture.jpg" 
+             xmlns:convertor="clr-namespace:AFRICAN_FOOD.Converters;assembly=AFRICAN_FOOD"
              xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
              utility:ViewModelLocator.AutoWireViewModel="True"
              >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convertor:ByteToImageFieldConverter x:Key="convertorImage"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-
 
         <Grid>
             <Grid.RowDefinitions>
@@ -48,6 +54,7 @@
                         <ViewCell>
                             <Grid Margin="5" BackgroundColor="White" RowSpacing="2">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="30"></RowDefinition>
                                     <RowDefinition Height="30"></RowDefinition>
                                     <RowDefinition Height="32"></RowDefinition>
@@ -58,15 +65,15 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="50"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Row="0" Grid.RowSpan="2" HeightRequest="80" WidthRequest="100" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding Pie.ImageUrl}"></Image>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Pie.Name}" Margin="3" Style="{StaticResource PieTileNameStyle}"></Label>
-                                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" >
+                                <Image Grid.Row="0" Grid.ColumnSpan="3" HeightRequest="200" Margin="2,2,2,1" Aspect="Fill" Source="{Binding Pie.Image,Converter={StaticResource convertorImage}}"></Image>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Pie.Name}" Margin="3" Style="{StaticResource PieTileNameStyle}"></Label>
+                                <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" >
                                     <Label Margin="3" Text="Numero du client : " Style="{StaticResource PieTileDescriptionStyle}"></Label>
                                     <Label   Margin="3" Text="{Binding ClientNumber}" Style="{StaticResource PieTileDescriptionStyle}"></Label>
                                 </StackLayout>
                                 <!--<Label Grid.Row="0" Grid.Column="2"  Margin="3" Text="{Binding Pie.Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource PieTilePriceStyle}" HorizontalTextAlignment="End"></Label>
                                 <Label Grid.Column="1" Grid.Row="1" Margin="3" Grid.ColumnSpan="2" Text="{Binding Pie.ShortDescription}" Style="{StaticResource PieTileDescriptionStyle}"></Label>-->
-                                <Grid Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" HeightRequest="30">
+                                <Grid Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1" HeightRequest="30">
                                     <Grid.RowDefinitions>
                                         <RowDefinition></RowDefinition>
                                         <RowDefinition></RowDefinition>
