@@ -100,7 +100,7 @@ namespace AFRICAN_FOOD.ViewModels
             set {
                 _shortDescription = value;
                 OnPropertyChanged();
-                CanExecute();
+                //CanExecute();
             }
         }
 
@@ -122,7 +122,7 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _prixNormal = value;
                 OnPropertyChanged();
-                CanExecute();
+                //CanExecute();
             }
         }
 
@@ -132,7 +132,7 @@ namespace AFRICAN_FOOD.ViewModels
             set {
                 _productName = value;
                 OnPropertyChanged();
-                CanExecute();
+                //CanExecute();
 
             }
 
@@ -158,7 +158,7 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _quantiteStock = value;
                 OnPropertyChanged();
-                CanExecute();
+                //CanExecute();
             }
         }
 
@@ -190,7 +190,7 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _prixPromotionnel = value;
                 OnPropertyChanged();
-                CanExecute();
+                //CanExecute();
             }
         }
 
