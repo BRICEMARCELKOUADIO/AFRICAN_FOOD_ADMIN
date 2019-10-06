@@ -264,7 +264,7 @@ namespace AFRICAN_FOOD.ViewModels
             var correct = address.FirstOrDefault();
             if (correct != null)
             {
-                Position = string.Concat(correct.CountryName + " " + correct.Locality+" "+correct.SubLocality);
+                Position = string.Concat(correct.AdminArea + ", " + correct.CountryName+", "+correct.Locality+ ", "+correct.SubLocality);
                 _longitude = correct.Longitude;
                 _latitude = correct.Latitude;
             }
