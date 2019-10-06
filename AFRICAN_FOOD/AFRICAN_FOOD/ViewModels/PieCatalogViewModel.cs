@@ -50,7 +50,7 @@ namespace AFRICAN_FOOD.ViewModels
         public ICommand PieTappedCommand => new Command<Pie>(OnPieTapped);
         public ICommand OnTakePicture => new Command(OnTakePictureCommand);
         public ICommand OnNextStep => new Command(OnNextStepCommand);
-        public ICommand OnValidate => new Command(OnValiderCommand, () => CanGo);
+        public ICommand OnValidate => new Command(OnValiderCommand);
 
         //public ObservableCollection<Pie> Pies
         //{
@@ -307,7 +307,7 @@ namespace AFRICAN_FOOD.ViewModels
 
         private void CanExecute()
         {
-            CanGo = !(string.IsNullOrEmpty(PrixNormal) || string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(QuantiteStock) || string.IsNullOrEmpty(ShortDescription) || string.IsNullOrEmpty(PrixPromotionnel));
+            //CanGo = !(string.IsNullOrEmpty(PrixNormal) || string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(QuantiteStock) || string.IsNullOrEmpty(ShortDescription) || string.IsNullOrEmpty(PrixPromotionnel));
         }
 
 

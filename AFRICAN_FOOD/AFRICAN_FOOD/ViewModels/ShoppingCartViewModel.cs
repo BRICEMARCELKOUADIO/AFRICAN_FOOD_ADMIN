@@ -146,7 +146,7 @@ namespace AFRICAN_FOOD.ViewModels
             ShoppingCartItems.Clear();
             var ListshoppingCart = await _shoppingCartService.GetShoppingCart(_settingsService.UserIdSetting);
             
-            ListshoppingCart.ForEach(e =>
+            ListshoppingCart?.ForEach(e =>
            {
                foreach (var item in e.ShoppingCartItems)
                {

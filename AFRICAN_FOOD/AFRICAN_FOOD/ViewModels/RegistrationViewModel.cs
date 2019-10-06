@@ -171,7 +171,17 @@ namespace AFRICAN_FOOD.ViewModels
                     var userRegistered = await
                     _authenticationService.Register(_firstName, _lastName, _email, true, _commerceName, _commerceLocate, _userPhone, _password,_longitude,_latitude,Position); ;
 
-                    if (userRegistered.IsAuthenticated)
+                if (userRegistered == null)
+                {
+                    await _dialogService.ShowDialog(
+                            "Impossible de se connecté au serveur",
+                            "Erreur",
+                            "OK");
+                    IsBusy = true;
+                    return;
+                }
+
+                if (userRegistered.IsAuthenticated)
                     {
                         await _dialogService.ShowDialog("inscription réussi", "", "OK");
                         _settingsService.UserIdSetting = userRegistered.User.Id;

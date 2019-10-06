@@ -74,6 +74,16 @@ namespace AFRICAN_FOOD.ViewModels
                 
                 var authenticationResponse = await _authenticationService.Authenticate(Email, Password);
 
+                if (authenticationResponse == null)
+                {
+                    await _dialogService.ShowDialog(
+                            "Impossible de se connecter au serveur",
+                            "Erreur",
+                            "OK");
+                    IsBusy = true;
+                    return;
+                }
+
                 if (authenticationResponse.IsAuthenticated)
                 {
                     if (authenticationResponse.User.TypeUser == false)

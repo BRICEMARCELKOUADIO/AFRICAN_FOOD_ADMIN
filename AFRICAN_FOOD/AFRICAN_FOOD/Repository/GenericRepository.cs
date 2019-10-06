@@ -46,16 +46,19 @@ namespace AFRICAN_FOOD.Repository
                 if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
                     responseMessage.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    throw new ServiceAuthenticationException(jsonResult);
+                    //throw new ServiceAuthenticationException(jsonResult);
+                    return default;
                 }
 
-                throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                return default;
+                //throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
 
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
-                throw;
+                //Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
+                //throw;
+                return default;
             }
         }
 
@@ -94,16 +97,19 @@ namespace AFRICAN_FOOD.Repository
                 if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
                     responseMessage.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    throw new ServiceAuthenticationException(jsonResult);
+                    //throw new ServiceAuthenticationException(jsonResult);
+                    return default;
                 }
 
-                throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                //throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                return default;
 
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
-                throw;
+                //Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
+                //throw;
+                return default;
             }
         }
 
@@ -140,16 +146,19 @@ namespace AFRICAN_FOOD.Repository
                 if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
                     responseMessage.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    throw new ServiceAuthenticationException(jsonResult);
+                    //throw new ServiceAuthenticationException(jsonResult);
+                    return default;
                 }
 
-                throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                //throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                return default;
 
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
-                throw;
+                //Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
+                //throw;
+                return default;
             }
         }
 
@@ -187,16 +196,19 @@ namespace AFRICAN_FOOD.Repository
                 if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
                     responseMessage.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    throw new ServiceAuthenticationException(jsonResult);
+                    // throw new ServiceAuthenticationException(jsonResult);
+                    return default;
                 }
 
-                throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                // throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                return default;
 
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
-                throw;
+                //Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
+                //throw;
+                return default;
             }
         }
 

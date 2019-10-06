@@ -8,7 +8,7 @@ namespace AFRICAN_FOOD.Constants
     {
         
         public const string BaseApiUrl = "http://vps730084.ovh.net/";
-        //public static string BaseApiUrl = "http://192.168.1.101:45458/";
+        //public static string BaseApiUrl = "http://192.168.1.101/";
         public const string CatalogEndpoint = "api/catalog/pies/";
         public const string PiesOfTheWeekEndpoint = "api/catalog/piesoftheweek/";
         public const string ShoppingCartEndpoint = "api/shoppingcart";
