@@ -45,7 +45,7 @@
         </Grid>
         <Grid>
             <Image Source="patternwide.png" HeightRequest="50" Aspect="Fill"></Image>
-            <Label Text="© 2018 Bethany's Pie Shop" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
+            <Label Text="© 2018 Bethany's Pie Shop" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
         </Grid>
     </StackLayout>
 </ContentPage>

@@ -66,8 +66,8 @@
                 </ScrollView>
             </Frame>
             <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0" BackgroundColor="Transparent" BorderColor="Transparent"
-                    AbsoluteLayout.LayoutBounds="0.5,0,50,50" VerticalOptions="Fill" HorizontalOptions="Fill">
-                <Image Source="bethanylogowithborder1.png" VerticalOptions="Start" Grid.Row="0" Grid.RowSpan="2"></Image>
+                    AbsoluteLayout.LayoutBounds="0.5,0,85,100" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Image Source="bethanylogowithborder1.png" VerticalOptions="Start"></Image>
             </Frame>
         </AbsoluteLayout>
     </Grid>

@@ -30,7 +30,7 @@
                 </StackLayout>
                 <StackLayout Grid.Row="2">
                     <Image Source="patternwide.png" HeightRequest="50" Aspect="Fill"></Image>
-                    <Label Text="© 2018 Bethany's Pie Shop" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
+                    <Label Text="© 2018 Bethany's Pie Shop" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
                 </StackLayout>
             </Grid>
         </ScrollView>

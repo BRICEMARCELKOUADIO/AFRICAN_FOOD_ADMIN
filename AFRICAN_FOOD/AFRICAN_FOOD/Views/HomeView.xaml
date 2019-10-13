@@ -107,7 +107,7 @@
                         </Grid>-->
                         <Grid Grid.Row="0">
                             <Image Source="patternwide.png" HeightRequest="50" Aspect="Fill"></Image>
-                            <Label Text="© 2019 African Food" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
+                            <Label Text="© 2019 African Food" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
                         </Grid>
                     </Grid>
                 </DataTemplate>

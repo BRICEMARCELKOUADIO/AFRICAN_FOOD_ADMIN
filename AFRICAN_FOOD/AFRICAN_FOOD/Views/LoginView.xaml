@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -55,9 +55,9 @@
                     <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="#ffcc80" HeightRequest="40" WidthRequest="40"/>
                 </StackLayout>
             </Frame>
-            <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0" WidthRequest="150" BackgroundColor="Transparent" BorderColor="Transparent"
-                    AbsoluteLayout.LayoutBounds="0.5,0,50,50" VerticalOptions="Fill" HorizontalOptions="Fill">
-                <Image Source="bethanylogowithborder1.png" VerticalOptions="Start" WidthRequest="150" Grid.Row="0" Grid.RowSpan="2"></Image>
+            <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0"  BackgroundColor="Transparent" BorderColor="Transparent"
+                    AbsoluteLayout.LayoutBounds="0.5,0,85,100" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Image Source="bethanylogowithborder1.png" VerticalOptions="Start"  ></Image>
             </Frame>
         </AbsoluteLayout>
     </Grid>
