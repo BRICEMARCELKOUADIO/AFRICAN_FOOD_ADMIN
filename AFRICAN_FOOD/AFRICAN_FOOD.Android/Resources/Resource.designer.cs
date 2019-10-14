@@ -6566,19 +6566,22 @@ namespace AFRICAN_FOOD.Droid
 			public const int roundedbgdark = 2131165514;
 			
 			// aapt resource value: 0x7F07014B
-			public const int splash = 2131165515;
+			public const int settings = 2131165515;
 			
 			// aapt resource value: 0x7F07014C
-			public const int splash_drawable = 2131165516;
+			public const int splash = 2131165516;
 			
 			// aapt resource value: 0x7F07014D
-			public const int tooltip_frame_dark = 2131165517;
+			public const int splash_drawable = 2131165517;
 			
 			// aapt resource value: 0x7F07014E
-			public const int tooltip_frame_light = 2131165518;
+			public const int tooltip_frame_dark = 2131165518;
 			
 			// aapt resource value: 0x7F07014F
-			public const int whitewood = 2131165519;
+			public const int tooltip_frame_light = 2131165519;
+			
+			// aapt resource value: 0x7F070150
+			public const int whitewood = 2131165520;
 			
 			static Drawable()
 			{

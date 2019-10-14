@@ -256,18 +256,34 @@ namespace AFRICAN_FOOD.ViewModels
         private async void OnLocaliser()
         {
             OnlocalisationLoad = true;
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 50;
 
-            var position = await locator.GetPositionAsync();
-            var address = await locator.GetAddressesForPositionAsync(position);
-            var correct = address.FirstOrDefault();
-            if (correct != null)
+            try
             {
-                Position = string.Concat(correct.AdminArea + ", " + correct.CountryName+", "+correct.Locality+ ", "+correct.SubLocality);
-                _longitude = correct.Longitude;
-                _latitude = correct.Latitude;
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 50;
+                var position = await locator.GetPositionAsync();
+                var address = await locator.GetAddressesForPositionAsync(position);
+                var correct = address.FirstOrDefault();
+                if (correct != null)
+                {
+                    Position = string.Concat(correct.AdminArea + ", " + correct.CountryName + ", " + correct.Locality + ", " + correct.SubLocality);
+                    _longitude = correct.Longitude;
+                    _latitude = correct.Latitude;
+                    CanExecute();
+                }
+                else
+                {
+                    await _dialogService.ShowDialog("Les informations n'ont pas pu être chargés, veuillez réessayer", "Erreur", "OK");
+                }
             }
+            catch (Exception)
+            {
+
+                await _dialogService.ShowDialog("Les informations n'ont pas pu être chargés, veuillez réessayer", "Erreur", "OK");
+                OnlocalisationLoad = false;
+            }
+
+
             OnlocalisationLoad = false;
 
         }
