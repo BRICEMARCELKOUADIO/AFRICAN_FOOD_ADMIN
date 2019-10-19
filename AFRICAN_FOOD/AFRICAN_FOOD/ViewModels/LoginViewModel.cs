@@ -80,7 +80,7 @@ namespace AFRICAN_FOOD.ViewModels
                             "Impossible de se connecter au serveur",
                             "Erreur",
                             "OK");
-                    IsBusy = true;
+                    IsBusy = false;
                     return;
                 }
 
