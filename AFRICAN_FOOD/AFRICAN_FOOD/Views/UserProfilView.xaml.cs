@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace AFRICAN_FOOD.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfileUser : ContentPage
+    public partial class UserProfilView : ContentPage
     {
-        public ProfileUser()
+        public UserProfilView()
         {
             InitializeComponent();
         }

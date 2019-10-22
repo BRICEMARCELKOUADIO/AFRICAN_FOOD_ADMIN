@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundImage="darktexture.jpg"
+             xmlns:utility="clr-namespace:AFRICAN_FOOD.Utility;assembly=AFRICAN_FOOD"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:controls="clr-namespace:AFRICAN_FOOD.Controls;assembly=AFRICAN_FOOD"
+             xmlns:convertor="clr-namespace:AFRICAN_FOOD.Converters;assembly=AFRICAN_FOOD"
+             x:Class="AFRICAN_FOOD.Views.UserProfilView" Title="Information du vendeur" >
+    
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <convertor:InverseBooleanConverter x:Key="boolConvertor"/>
+            </ResourceDictionary>
+        </ContentPage.Resources>
+    
+    <ContentPage.Content>
+
+        <Frame>
+            <ScrollView>
+            <StackLayout Margin="20">
+           
+                    <Label Text="Nom"  />
+                    <controls:RoundedEntry IsEnabled="{Binding Startmodify}" Placeholder="Nom" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding FirstName, Mode=TwoWay}"/>
+                    <Label Text="Prenom"  />
+                    <controls:RoundedEntry IsEnabled="{Binding Startmodify}" Placeholder="Prenom" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding LastName, Mode=TwoWay}"/>
+                    <Label Text="User name"  />
+                    <controls:RoundedEntry Placeholder="Username" IsEnabled="{Binding Startmodify}" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Email, Mode=TwoWay}"/>
+                     <Label Text="Numero de telephone"  />
+                    <controls:RoundedEntry IsEnabled="{Binding Startmodify}" Placeholder="Numero de telephone" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding UserPhone, Mode=TwoWay}"/>
+                    <Label Text="Localisation de votre commerce"  />
+                    <controls:RoundedEntry IsEnabled="{Binding Startmodify}" Placeholder="Localisation de votre commerce " WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding CommerceName, Mode=TwoWay}"/>
+                    <Label Text="Nom de votre commerce"  />
+                    <controls:RoundedEntry IsEnabled="{Binding Startmodify}" Placeholder="Nom de votre commerce" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding CommerceLocate, Mode=TwoWay}"/>
+                    <Label Text="Position géographique"  />
+                    <controls:RoundedEntry IsEnabled="False" Placeholder="Position géographique" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Position, Mode=TwoWay}"/>
+
+                    <Label Text="Mot de passe (*) " IsVisible="{Binding Startmodify}" IsEnabled="{Binding Startmodify}" />
+                    <controls:RoundedEntry IsPassword="True" Placeholder="Mot de passe" IsVisible="{Binding Startmodify}" IsEnabled="{Binding Startmodify}" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
+
+                    <Button Style="{StaticResource RegularButton}" Margin="0,0,0,5" Text="Localisez-moi" IsVisible="{Binding OnlocalisationLoad, Converter={StaticResource boolConvertor}}" IsEnabled="{Binding OnlocalisationLoad,Converter={StaticResource boolConvertor}}" Command="{Binding LocaliserCommand}"></Button>
+                    <ActivityIndicator IsVisible="{Binding OnlocalisationLoad}" IsEnabled="{Binding OnlocalisationLoad}" Color="#ffcc80" IsRunning="{Binding OnlocalisationLoad}" HeightRequest="40" WidthRequest="40"/>
+                    <Button Style="{StaticResource RegularButton}" IsEnabled="{Binding CanGo}" IsVisible="{Binding IsBusy, Converter={StaticResource boolConvertor}}" Text="Enregistré" Command="{Binding RegisterCommand}"></Button>
+                    <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="#ffcc80" HeightRequest="40" WidthRequest="40"/>
+            </StackLayout>
+        </ScrollView>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

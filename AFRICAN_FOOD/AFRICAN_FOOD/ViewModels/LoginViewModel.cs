@@ -104,6 +104,7 @@ namespace AFRICAN_FOOD.ViewModels
                     _settingsService.Longitude = authenticationResponse.User.Longitude;
                     _settingsService.Position = authenticationResponse.User.PositionGeo;
 
+
                     IsBusy = false;
                     await _navigationService.NavigateToAsync<MainViewModel>();
                 }

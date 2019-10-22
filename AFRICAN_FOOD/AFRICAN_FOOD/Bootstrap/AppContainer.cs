@@ -31,6 +31,7 @@ namespace AFRICAN_FOOD.Bootstrap
             builder.RegisterType<ShoppingCartViewModel>().SingleInstance();
             builder.RegisterType<MenuViewModel>();
             builder.RegisterType<HomeViewModel>();
+            builder.RegisterType<UserProfilViewModel>();
 
             //services - data
             builder.RegisterType<CatalogDataService>().As<ICatalogDataService>();

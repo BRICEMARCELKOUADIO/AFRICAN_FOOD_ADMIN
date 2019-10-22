@@ -10,6 +10,7 @@ namespace AFRICAN_FOOD.Enumerations
         Pies,
         ShoppingCart,
         Contact,
+        profil,
         Logout
     }
 }

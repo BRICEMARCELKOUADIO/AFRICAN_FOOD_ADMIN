@@ -23,6 +23,8 @@ namespace AFRICAN_FOOD.Converters
                     return "ic_pies.png";
                 case MenuItemType.ShoppingCart:
                     return "ic_cart.png";
+                case MenuItemType.profil:
+                    return "settings.png";
                 case MenuItemType.Logout:
                     return "ic_logout.png";
                 default:

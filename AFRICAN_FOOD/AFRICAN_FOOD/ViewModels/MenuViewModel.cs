@@ -78,12 +78,21 @@ namespace AFRICAN_FOOD.ViewModels
                 MenuItemType = MenuItemType.ShoppingCart
             });
 
+            MenuItems.Add(new MainMenuItem
+            {
+                MenuText = "Info Utilisateur",
+                ViewModelToLoad = typeof(UserProfilViewModel),
+                MenuItemType = MenuItemType.profil
+            });
+
             //MenuItems.Add(new MainMenuItem
             //{
             //    MenuText = "Contact us",
             //    ViewModelToLoad = typeof(ContactViewModel),
             //    MenuItemType = MenuItemType.Contact
             //});
+
+
 
             MenuItems.Add(new MainMenuItem
             {
