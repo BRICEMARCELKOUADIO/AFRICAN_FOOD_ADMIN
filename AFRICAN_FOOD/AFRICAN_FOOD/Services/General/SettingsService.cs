@@ -16,6 +16,10 @@ namespace AFRICAN_FOOD.Services.General
         private const string _position = "_position";
         private const string _longitude = "_longitude";
         private const string _latitude = "_latitude";
+        private const string _commerceName = "_commerceName";
+        private const string _commerceLocate = "_commerceLocate";
+        private const string _userLastName = "_userLastName";
+        private const string _email = "_email";
 
 
         public SettingsService()
@@ -73,6 +77,30 @@ namespace AFRICAN_FOOD.Services.General
         {
             get => GetItem(_position);
             set => AddItem(_position, value);
+        }
+
+        public string CommerceName
+        {
+            get => GetItem(_commerceName);
+            set => AddItem(_commerceName, value);
+        }
+
+        public string UserLastName
+        {
+            get => GetItem(_userLastName);
+            set => AddItem(_userLastName, value);
+        }
+
+        public string CommerceLocate
+        {
+            get => GetItem(_commerceLocate);
+            set => AddItem(_commerceLocate, value);
+        }
+
+        public string Email
+        {
+            get => GetItem(_email);
+            set => AddItem(_email, value);
         }
     }
 }

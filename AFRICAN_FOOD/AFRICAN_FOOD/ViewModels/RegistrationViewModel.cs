@@ -169,7 +169,7 @@ namespace AFRICAN_FOOD.ViewModels
                 //if (IsValidEmail(Email))
                 //{
                     var userRegistered = await
-                    _authenticationService.Register(_firstName, _lastName, _email, true, _commerceName, _commerceLocate, _userPhone, _password,_longitude,_latitude,Position); ;
+                    _authenticationService.Register(_firstName, _lastName, _email, true, _commerceName, _commerceLocate, _userPhone, _password,_longitude,_latitude,Position,false,string.Empty); ;
 
                 if (userRegistered == null)
                 {

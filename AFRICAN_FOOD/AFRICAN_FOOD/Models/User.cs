@@ -24,7 +24,7 @@ namespace AFRICAN_FOOD.Models
             public string Email { get; set; }
 
             [JsonProperty("commerceName")]
-            public object CommerceName { get; set; }
+            public string CommerceName { get; set; }
 
             [JsonProperty("commerceLocate")]
             public string CommerceLocate { get; set; }

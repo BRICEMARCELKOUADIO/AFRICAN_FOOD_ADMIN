@@ -17,5 +17,9 @@ namespace AFRICAN_FOOD.Contracts.Services.General
         double Longitude { get; set; }
         double Latitude { get; set; }
         string Position { get; set; }
+        string Email { get; set; }
+        string UserLastName { get; set; }
+        string CommerceName { get; set; }
+        string CommerceLocate { get; set; }
     }
 }

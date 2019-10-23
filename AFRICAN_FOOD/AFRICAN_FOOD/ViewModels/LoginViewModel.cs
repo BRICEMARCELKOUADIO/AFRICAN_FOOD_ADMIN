@@ -100,9 +100,13 @@ namespace AFRICAN_FOOD.ViewModels
                     _settingsService.UserIdSetting =  authenticationResponse.User.Id;
                     _settingsService.UserPhone = authenticationResponse.User.UserPhone;
                     _settingsService.UserNameSetting = authenticationResponse.User.FirstName;
+                    _settingsService.Email = authenticationResponse.User.Email;
+                    _settingsService.UserLastName = authenticationResponse.User.LastName;
                     _settingsService.Latitude = authenticationResponse.User.Latitude;
                     _settingsService.Longitude = authenticationResponse.User.Longitude;
                     _settingsService.Position = authenticationResponse.User.PositionGeo;
+                    _settingsService.CommerceName = authenticationResponse.User.CommerceName;
+                    _settingsService.CommerceLocate = authenticationResponse.User.CommerceLocate;
 
 
                     IsBusy = false;

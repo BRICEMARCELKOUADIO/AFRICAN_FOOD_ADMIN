@@ -22,7 +22,7 @@ namespace AFRICAN_FOOD.Services.Data
 
         }
 
-        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser,string commerceName,string commerceLocate, string usePhone, string password, double longitude, double latitude, string position)
+        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser,string commerceName,string commerceLocate, string usePhone, string password, double longitude, double latitude, string position,bool Ismodify, string oldEmail)
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {
@@ -30,7 +30,7 @@ namespace AFRICAN_FOOD.Services.Data
             };
 
 
-            var url = $"{ApiConstants.BaseApiUrl}{ ApiConstants.RegisterEndpoint}?FirstName={firstName}&LastName={lastName}&Email={email}&TypeUser={typeuser}&CommerceName={commerceName}&CommerceLocate={commerceLocate}&UserPhone={usePhone}&Longitude={longitude}&Latitude={latitude}&PositionGeo={position}&Password={password}";
+            var url = $"{ApiConstants.BaseApiUrl}{ ApiConstants.RegisterEndpoint}?FirstName={firstName}&LastName={lastName}&Email={email}&TypeUser={typeuser}&CommerceName={commerceName}&CommerceLocate={commerceLocate}&UserPhone={usePhone}&Longitude={longitude}&Latitude={latitude}&PositionGeo={position}&Password={password}&Ismodify={Ismodify}&oldEmail={oldEmail}";
 
             AuthenticationRequest authenticationRequest = new AuthenticationRequest()
             {
