@@ -43,6 +43,11 @@
 
                     <Button Style="{StaticResource RegularButton}" Margin="0,0,0,5" Text="Modifier" IsVisible="{Binding Startmodify, Converter={StaticResource boolConvertor}}" IsEnabled="{Binding Startmodify,Converter={StaticResource boolConvertor}}" Command="{Binding ModifyCommand}"></Button>
 
+                    <Button Style="{StaticResource RegularButton}" Margin="0,0,0,5" Text="Supprimer mon compte" IsVisible="{Binding Startmodify, Converter={StaticResource boolConvertor}}" IsEnabled="{Binding Startmodify,Converter={StaticResource boolConvertor}}" Command="{Binding deleteCommand}" ></Button>
+                    <!---->
+                    <ActivityIndicator IsVisible="{Binding IsDelete}" IsEnabled="{Binding IsDelete}" IsRunning="{Binding IsDelete}" Color="#ffcc80" HeightRequest="40" WidthRequest="40"/>
+
+
                     <StackLayout IsEnabled="{Binding Startmodify}" IsVisible="{Binding Startmodify}" >
                         <Button Style="{StaticResource RegularButton}" Margin="0,0,0,5" Text="Localisez-moi" IsVisible="{Binding OnlocalisationLoad, Converter={StaticResource boolConvertor}}" IsEnabled="{Binding OnlocalisationLoad,Converter={StaticResource boolConvertor}}" Command="{Binding LocaliserCommand}"></Button>
                         <ActivityIndicator IsVisible="{Binding OnlocalisationLoad}" IsEnabled="{Binding OnlocalisationLoad}" Color="#ffcc80" IsRunning="{Binding OnlocalisationLoad}" HeightRequest="40" WidthRequest="40"/>

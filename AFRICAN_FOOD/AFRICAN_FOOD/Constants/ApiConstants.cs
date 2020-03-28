@@ -6,9 +6,9 @@ namespace AFRICAN_FOOD.Constants
 {
     public class ApiConstants
     {
-        
+
         public const string BaseApiUrl = "http://vps730084.ovh.net/";
-        //public static string BaseApiUrl = "http://192.168.3.121:45457/";
+        //public static string BaseApiUrl = "http://192.168.1.101:45461/";
         public const string CatalogEndpoint = "api/catalog/pies/";
         public const string PiesOfTheWeekEndpoint = "api/catalog/piesoftheweek/";
         public const string ShoppingCartEndpoint = "api/shoppingcart";
@@ -22,14 +22,18 @@ namespace AFRICAN_FOOD.Constants
         public const string ModifyAddPies = "api/catalog/ModifyAddPies";
         public const string GetPieByAdminId = "api/catalog/GetPieByAdminId/";
         public const string DeletPie = "api/catalog/DeletPie";
+        public const string DeleteUser = "api/authentication/Delete";
+        public const string SendMessage = "api/tchat/SendMessage";
+        public const string GetAllMessage = "api/tchat/GetMessages";
+        public const string GetAllUser = "api/tchat/GetAllUser";
 
-//        static ApiConstants()
-//        {
-//#if DEBUG
-//            BaseApiUrl = "http://192.168.1.101:45457/";
-//#else
-//            BaseApiUrl = "http://vps730084.ovh.net/";
-//#endif
-//        }
+        //        static ApiConstants()
+        //        {
+        //#if DEBUG
+        //            BaseApiUrl = "http://192.168.1.101:45457/";
+        //#else
+        //            BaseApiUrl = "http://vps730084.ovh.net/";
+        //#endif
+        //        }
     }
 }

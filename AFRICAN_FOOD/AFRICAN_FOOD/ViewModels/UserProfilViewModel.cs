@@ -4,6 +4,7 @@ using AFRICAN_FOOD.ViewModels.Base;
 using Plugin.Geolocator;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -28,8 +29,8 @@ namespace AFRICAN_FOOD.ViewModels
         private string _commerceLocate;
         private bool _canGo = false;
         private string _position = string.Empty;
-        private double _longitude;
-        private double _latitude;
+        private string _longitude;
+        private string _latitude;
 
         public string FirstName
         {
@@ -39,6 +40,17 @@ namespace AFRICAN_FOOD.ViewModels
                 _firstName = value;
                 OnPropertyChanged();
                 CanExecute();
+            }
+        }
+
+        private bool _isDelete = false;
+        public bool IsDelete
+        {
+            get => _isDelete;
+            set
+            {
+                _isDelete = value;
+                OnPropertyChanged();
             }
         }
 
@@ -177,6 +189,7 @@ namespace AFRICAN_FOOD.ViewModels
         public ICommand LocaliserCommand => new Command(OnLocaliser);
         public ICommand RegisterCommand => new Command(OnRegister, () => CanGo);
         public ICommand ModifyCommand => new Command(onModifyCommand);
+        public ICommand deleteCommand => new Command(OndeleteCommand);
 
         public UserProfilViewModel(IConnectionService connectionService, INavigationService navigationService, IAuthenticationService authenticationService, ISettingsService settingsService, IDialogService dialogService) : base(connectionService, navigationService, dialogService)
         {
@@ -267,6 +280,42 @@ namespace AFRICAN_FOOD.ViewModels
             }
         }
 
+        private async void OndeleteCommand()
+        {
+            IsDelete = true;
+            try
+            {
+                var id = _settingsService.UserIdSetting;
+                var response = _authenticationService.DeleteMyCompte(id);
+                if (response == null)
+                {
+                    await _dialogService.ShowDialog("Erreur survenu lors de la suppression de l'utilisateur,", "Erreur", "OK");
+                    IsDelete = false;
+                    return;
+                }
+
+                _settingsService.UserIdSetting = "";
+                _settingsService.UserNameSetting = "";
+                _settingsService.Email = "";
+                _settingsService.UserLastName = "";
+                _settingsService.Latitude = default;
+                _settingsService.Longitude = default;
+                _settingsService.Position = default;
+
+                IsDelete = false;
+                await _dialogService.ShowDialog("Seppression reussie", "", "OK");
+                await _navigationService.NavigateToAsync<LoginViewModel>();
+            }
+            catch (Exception)
+            {
+
+                await _dialogService.ShowDialog("Erreur survenu lors de la suppression de l'utilisateur,", "Erreur", "OK");
+                IsDelete = false;
+                return;
+            }
+        }
+
+
         private void onModifyCommand()
         {
             Startmodify = true;
@@ -286,8 +335,12 @@ namespace AFRICAN_FOOD.ViewModels
                 if (correct != null)
                 {
                     Position = string.Concat(correct.AdminArea + ", " + correct.CountryName + ", " + correct.Locality + ", " + correct.SubLocality);
-                    _longitude = correct.Longitude;
-                    _latitude = correct.Latitude;
+                    string specifier;
+                    CultureInfo culture;
+                    specifier = "F";
+                    culture = CultureInfo.CreateSpecificCulture("fr-FR");
+                    _longitude = correct.Longitude.ToString(specifier, culture);
+                    _latitude = correct.Latitude.ToString(specifier, culture);
                     CanExecute();
                 }
                 else

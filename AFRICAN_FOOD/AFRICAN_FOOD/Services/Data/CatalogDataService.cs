@@ -66,7 +66,7 @@ namespace AFRICAN_FOOD.Services.Data
             return pies;
         }
 
-        public async Task<Pie> AddPiesAsync(int pieId,string name, string shortDescription,  decimal price, decimal prixPromotionnel, string imageToBase64, /*byte[] image,*/ bool isPieOfTheWeek, bool inStock, string userAdminId, string userPhone, double longitude, double latitude, string positionGeo, bool isModify, int quantite)
+        public async Task<Pie> AddPiesAsync(int pieId,string name, string shortDescription,  decimal price, decimal prixPromotionnel, string imageToBase64, /*byte[] image,*/ bool isPieOfTheWeek, bool inStock, string userAdminId, string userPhone, string longitude, string latitude, string positionGeo, bool isModify, int quantite)
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {

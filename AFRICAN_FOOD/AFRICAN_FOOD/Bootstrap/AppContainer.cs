@@ -32,15 +32,19 @@ namespace AFRICAN_FOOD.Bootstrap
             builder.RegisterType<MenuViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<UserProfilViewModel>();
+            builder.RegisterType<MessagesViewModel>();
+            builder.RegisterType<MessageViewModel>();
 
             //services - data
             builder.RegisterType<CatalogDataService>().As<ICatalogDataService>();
             builder.RegisterType<ShoppingCartDataService>().As<IShoppingCartDataService>();
             builder.RegisterType<ContactDataService>().As<IContactDataService>();
             builder.RegisterType<OrderDataService>().As<IOrderDataService>();
+            builder.RegisterType<TchatDataService>().As<ITchatDataService>();
 
             //services - general
             builder.RegisterType<ConnectionService>().As<IConnectionService>();
+            builder.RegisterType<ApplicationContext>().As<IApplicationContext>();
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
             builder.RegisterType<DialogService>().As<IDialogService>();

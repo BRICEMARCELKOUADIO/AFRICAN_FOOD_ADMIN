@@ -2,6 +2,8 @@
 using AFRICAN_FOOD.Contracts.Services.General;
 using AFRICAN_FOOD.ViewModels.Base;
 using Plugin.Geolocator;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -27,8 +29,8 @@ namespace AFRICAN_FOOD.ViewModels
         private string _commerceLocate;
         private bool _canGo = false;
         private string _position = string.Empty;
-        private double _longitude;
-        private double _latitude;
+        private string _longitude;
+        private string _latitude;
 
         public RegistrationViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
@@ -37,6 +39,7 @@ namespace AFRICAN_FOOD.ViewModels
         {
             _authenticationService = authenticationService;
             _settingsService = settingsService;
+            EnablePermissioLocation();
         }
 
         public string FirstName
@@ -208,6 +211,37 @@ namespace AFRICAN_FOOD.ViewModels
                 await _dialogService.ShowDialog("Vérifier votre connexion internet", "", "OK");
             }
         }
+
+        private async void EnablePermissioLocation()
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (status != PermissionStatus.Granted)
+                {
+                    //if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
+                    //{
+                    //    await _dialogService.ShowDialog("Gunna need that location", "Need location", "OK");
+                    //}
+
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+                }
+
+                //if (status == PermissionStatus.Granted)
+                //{
+                //    //Query permission
+                //}
+                //else if (status != PermissionStatus.Unknown)
+                //{
+                //    //location denied
+                //}
+            }
+            catch (Exception ex)
+            {
+                //Something went wrong
+            }
+        }
+
         bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -261,14 +295,18 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
-                var position = await locator.GetPositionAsync();
+                var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(3));
                 var address = await locator.GetAddressesForPositionAsync(position);
                 var correct = address.FirstOrDefault();
                 if (correct != null)
                 {
                     Position = string.Concat(correct.AdminArea + ", " + correct.CountryName + ", " + correct.Locality + ", " + correct.SubLocality);
-                    _longitude = correct.Longitude;
-                    _latitude = correct.Latitude;
+                    string specifier;
+                    CultureInfo culture;
+                    specifier = "";
+                    culture = CultureInfo.CreateSpecificCulture("fr-FR");
+                    _longitude = correct.Longitude.ToString(culture);
+                    _latitude = correct.Latitude.ToString(culture);
                     CanExecute();
                 }
                 else

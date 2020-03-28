@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Dependencies\TextToSpeech.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\RoundedEntryRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,9 +146,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash_drawable.xml" />
   </ItemGroup>
-  <ItemGroup>
+  <!-- <ItemGroup>
     <AndroidResource Include="Resources\drawable\springsale.jpg" />
-  </ItemGroup>
+  </ItemGroup> -->
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\whitewood.jpg" />
   </ItemGroup>
@@ -168,6 +169,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

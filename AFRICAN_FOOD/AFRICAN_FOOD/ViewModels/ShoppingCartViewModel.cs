@@ -25,6 +25,7 @@ namespace AFRICAN_FOOD.ViewModels
         private decimal _taxes;
         private decimal _shipping;
         private decimal _grandTotal;
+        public ICommand UserTapped => new Command<ShoppingCartItem>(OnUserTapped);
 
         public ShoppingCartViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
@@ -128,6 +129,19 @@ namespace AFRICAN_FOOD.ViewModels
         //    GrandTotal = _orderTotal + _shipping + _taxes;
         //}
 
+        private void OnUserTapped(ShoppingCartItem shoppingCartItem)
+        {
+            if (!string.IsNullOrEmpty(shoppingCartItem.ClientId))
+            {
+                var user = new User()
+                {
+                    Id = shoppingCartItem.ClientId
+                };
+                _navigationService.NavigateToAsync<MessageViewModel>(user);
+            }
+            
+        }
+
         private decimal CalculateOrderTotal()
         {
             decimal total = 0;
@@ -156,6 +170,8 @@ namespace AFRICAN_FOOD.ViewModels
             IsCommandLoaded = false;
 
         }
+
+
 
         //private async void OnAddPieToBasketReceived(Pie pie)
         //{

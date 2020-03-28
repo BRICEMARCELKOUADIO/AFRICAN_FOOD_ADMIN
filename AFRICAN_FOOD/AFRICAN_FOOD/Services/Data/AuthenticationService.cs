@@ -22,7 +22,7 @@ namespace AFRICAN_FOOD.Services.Data
 
         }
 
-        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser,string commerceName,string commerceLocate, string usePhone, string password, double longitude, double latitude, string position,bool Ismodify, string oldEmail)
+        public async Task<AuthenticationResponse> Register(string firstName, string lastName, string email, bool typeuser,string commerceName,string commerceLocate, string usePhone, string password, string longitude, string latitude, string position,bool Ismodify, string oldEmail)
         {
             UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
             {
@@ -72,6 +72,23 @@ namespace AFRICAN_FOOD.Services.Data
             //return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(builder.ToString(), authenticationRequest);
             return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(url, authenticationRequest);
             //return await _genericRepository.PostAsync<AuthenticationResponse>(builder.ToString());
+        }
+
+        public async Task<AuthenticationResponse> DeleteMyCompte(string id)
+        {
+            UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
+            {
+                Path = ApiConstants.DeleteUser + $"/{id}"
+            };
+
+            AuthenticationRequest authenticationRequest = new AuthenticationRequest()
+            {
+                Email = ""
+            };
+
+            var url = $"{ApiConstants.BaseApiUrl}{ ApiConstants.DeleteUser}?id={id}";
+
+            return await _genericRepository.PostAsync<AuthenticationRequest, AuthenticationResponse>(url, authenticationRequest);
         }
     }
 }

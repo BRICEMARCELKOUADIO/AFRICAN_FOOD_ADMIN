@@ -35,8 +35,8 @@ namespace AFRICAN_FOOD.Models
 
         public bool InStock { get; set; }
 
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
 
         public string PositionGeo { get; set; }
 

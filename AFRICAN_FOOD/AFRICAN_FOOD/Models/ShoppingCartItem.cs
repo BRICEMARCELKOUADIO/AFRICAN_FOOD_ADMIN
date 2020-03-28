@@ -12,6 +12,8 @@ namespace AFRICAN_FOOD.Models
 
         public int PieId { get; set; }
         public string ClientNumber { get; set; }
+        public string ClientId { get; set; }
+        public string ClientName { get; set; }
 
         public int Quantity { get; set; }
 

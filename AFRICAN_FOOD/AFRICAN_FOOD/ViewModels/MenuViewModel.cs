@@ -80,6 +80,13 @@ namespace AFRICAN_FOOD.ViewModels
 
             MenuItems.Add(new MainMenuItem
             {
+                MenuText = "Messages",
+                ViewModelToLoad = typeof(MessagesViewModel),
+                MenuItemType = MenuItemType.Message
+            });
+
+            MenuItems.Add(new MainMenuItem
+            {
                 MenuText = "Info Utilisateur",
                 ViewModelToLoad = typeof(UserProfilViewModel),
                 MenuItemType = MenuItemType.profil

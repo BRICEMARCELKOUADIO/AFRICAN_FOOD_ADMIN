@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="AFRICAN_FOOD.Templates.OutgoingViewCell">
+    <Grid ColumnSpacing="2" Padding="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="0" BackgroundColor="#F3F3F3">
+            <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true"/>
+            </Frame.HasShadow>
+            <Label Text="{Binding Text}" TextColor="#101010"/>
+        </Frame>
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="Micro" Grid.Column="0" Text="{Binding MessageDateTime, StringFormat='\{0:dd/MM/yyyy HH:mm}'}" TextColor="Gray"></Label>
+            <Label FontSize="Micro" Grid.Column="1" Text="Vous" TextColor="#7B7B7B" FontAttributes="Bold" HorizontalTextAlignment="End"/>
+        </Grid>
+    </Grid>
+</ViewCell>

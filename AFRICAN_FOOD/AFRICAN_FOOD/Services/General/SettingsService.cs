@@ -63,15 +63,15 @@ namespace AFRICAN_FOOD.Services.General
             get => GetItem(_userPhone);
             set => AddItem(_userPhone, value);
         }
-        public double Longitude
+        public string Longitude
         {
-            get => GetItem2(_longitude);
-            set => AddItem2(_longitude, value);
+            get => GetItem(_longitude);
+            set => AddItem(_longitude, value);
         }
-        public double Latitude
+        public string Latitude
         {
-            get => GetItem2(_latitude);
-            set => AddItem2(_latitude, value);
+            get => GetItem(_latitude);
+            set => AddItem(_latitude, value);
         }
         public string Position
         {

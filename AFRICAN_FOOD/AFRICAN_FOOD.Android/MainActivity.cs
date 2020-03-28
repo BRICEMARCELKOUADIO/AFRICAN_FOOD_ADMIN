@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Acr.UserDialogs;
+using Android.Locations;
+using Android.Content;
 
 namespace AFRICAN_FOOD.Droid
 {
@@ -26,6 +28,12 @@ namespace AFRICAN_FOOD.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            LocationManager locationManager = (LocationManager)Instance.GetSystemService(LocationService);
+
+            if (locationManager.IsProviderEnabled(LocationManager.GpsProvider) == false)
+            {
+                StartActivity(new Intent(Android.Provider.Settings.ActionLocationSourceSettings));
+            }
             UserDialogs.Init(this);
             LoadApplication(new App());
         }

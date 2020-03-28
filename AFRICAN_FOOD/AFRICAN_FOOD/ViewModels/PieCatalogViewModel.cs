@@ -122,6 +122,10 @@ namespace AFRICAN_FOOD.ViewModels
             {
                 _prixNormal = value;
                 OnPropertyChanged();
+                if (!string.IsNullOrEmpty(PrixNormal) && decimal.Parse(PrixNormal) != 0)
+                {
+                    PrixPromotionnel = (decimal.Parse(PrixNormal) / 2).ToString();
+                }
                 //CanExecute();
             }
         }

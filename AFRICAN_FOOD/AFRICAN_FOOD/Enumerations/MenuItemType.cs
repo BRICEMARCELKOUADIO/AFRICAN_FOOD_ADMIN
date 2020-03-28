@@ -11,6 +11,7 @@ namespace AFRICAN_FOOD.Enumerations
         ShoppingCart,
         Contact,
         profil,
-        Logout
+        Logout,
+        Message
     }
 }
